@@ -85,3 +85,51 @@ if(loggedInUser && (document.title.includes("Sign Up") || document.title.include
 document.addEventListener("DOMContentLoaded", () => {
   // your existing code here
 });
+
+// Handle Forgot Password / Reset
+if (document.title.includes("Forgot Password")) {
+  const forgotForm = document.getElementById('forgot-form');
+  const resetForm = document.getElementById('reset-form');
+  let currentUserEmail = null;
+
+  // Step 1: Verify the email
+  forgotForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const email = document.getElementById('fp-email').value.trim();
+    const users = JSON.parse(localStorage.getItem('users')) || [];
+    const user = users.find(u => u.email === email);
+    if (!user) {
+      alert('No account found for that email.');
+      return;
+    }
+    // Show reset form
+    currentUserEmail = email;
+    forgotForm.style.display = 'none';
+    resetForm.style.display = 'block';
+  });
+
+  // Step 2: Reset the password
+  resetForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const p1 = document.getElementById('new-password').value;
+    const p2 = document.getElementById('confirm-password').value;
+    if (p1.length < 4) {
+      alert('Password too short (min 4 chars).');
+      return;
+    }
+    if (p1 !== p2) {
+      alert('Passwords do not match.');
+      return;
+    }
+    const users = JSON.parse(localStorage.getItem('users')) || [];
+    const idx = users.findIndex(u => u.email === currentUserEmail);
+    if (idx === -1) {
+      alert('Unexpected error: user not found.');
+      return;
+    }
+    users[idx].password = p1;
+    localStorage.setItem('users', JSON.stringify(users));
+    alert('Password reset successfully! You can now sign in with your new password.');
+    window.location.href = 'signin.html';
+  });
+}
