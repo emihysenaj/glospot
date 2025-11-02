@@ -29,9 +29,9 @@ header {
 }
 
 .logo {
-  height: 50px;
-  width: auto;
-  border-radius: 8px;
+  width: 150px;
+  height: auto;
+  display: block; /* make sure it’s visible */
 }
 
 nav a, #logout-btn {
