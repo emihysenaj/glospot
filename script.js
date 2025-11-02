@@ -133,3 +133,55 @@ if (document.title.includes("Forgot Password")) {
     window.location.href = 'signin.html';
   });
 }
+
+<script type="module" src="firebase-config.js"></script>
+<script type="module" src="script.js"></script>
+
+import { auth } from './firebase-config.js';
+import { createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-auth.js";
+
+document.getElementById("signup-form").addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const email = document.getElementById("su-email").value;
+  const password = document.getElementById("su-password").value;
+
+  try {
+    await createUserWithEmailAndPassword(auth, email, password);
+    alert("Signup successful! You can now sign in.");
+    window.location.href = "signin.html";
+  } catch (error) {
+    alert(error.message);
+  }
+});
+
+import { auth } from './firebase-config.js';
+import { signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-auth.js";
+
+document.getElementById("signin-form").addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const email = document.getElementById("si-email").value;
+  const password = document.getElementById("si-password").value;
+
+  try {
+    await signInWithEmailAndPassword(auth, email, password);
+    alert("Welcome back!");
+    window.location.href = "index.html";
+  } catch (error) {
+    alert(error.message);
+  }
+});
+
+import { auth } from './firebase-config.js';
+import { sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-auth.js";
+
+document.getElementById("forgot-form").addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const email = document.getElementById("fp-email").value;
+
+  try {
+    await sendPasswordResetEmail(auth, email);
+    alert("Password reset email sent! Check your inbox.");
+  } catch (error) {
+    alert(error.message);
+  }
+});
