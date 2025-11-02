@@ -1,18 +1,15 @@
 // firebase-config.js
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-app.js";
 import { getAuth } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-auth.js";
-import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-analytics.js";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCjH7QD6NhDWWOPedKWvdG5V5HG6GnnbH8",
-  authDomain: "glospot.firebaseapp.com",
-  projectId: "glospot",
-  storageBucket: "glospot.appspot.com",
-  messagingSenderId: "5569788371",
-  appId: "1:5569788371:web:b0b9862f36be996c4a1726",
-  measurementId: "G-87VPZLYDKK"
+  apiKey: "YOUR_API_KEY",
+  authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
+  projectId: "YOUR_PROJECT_ID",
+  storageBucket: "YOUR_PROJECT_ID.appspot.com",
+  messagingSenderId: "YOUR_SENDER_ID",
+  appId: "YOUR_APP_ID"
 };
 
 const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
 export const auth = getAuth(app);
