@@ -1,187 +1,127 @@
+// script.js
+import { auth } from './firebase-config.js';
+import { 
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  sendPasswordResetEmail,
+  onAuthStateChanged,
+  signOut,
+  updateProfile
+} from "https://www.gstatic.com/firebasejs/12.5.0/firebase-auth.js";
+
 console.log("Welcome to GLOSPOT!");
 
-// Handle Sign Up
-if (document.title.includes("Sign Up")) {
-  const form = document.querySelector("form");
-  form.addEventListener("submit", (event) => {
-    event.preventDefault();
-    const name = form.querySelector("input[type='text']").value;
-    const email = form.querySelector("input[type='email']").value;
-    const password = form.querySelector("input[type='password']").value;
+// ---------- NAVBAR & LOGGED-IN STATE ----------
+const nav = document.getElementById("main-nav");
+const logoutBtn = document.getElementById("logout-btn");
+
+onAuthStateChanged(auth, (user) => {
+  const signinLink = document.getElementById("signin-link");
+  const signupLink = document.getElementById("signup-link");
+
+  if(user){
+    // Show Welcome message
+    if(!document.getElementById("user-welcome")){
+      const span = document.createElement("span");
+      span.id = "user-welcome";
+      span.textContent = user.displayName ? `👋 Welcome, ${user.displayName}` : `👋 Welcome, ${user.email}`;
+      span.style.color = "white";
+      span.style.fontWeight = "bold";
+      span.style.marginRight = "10px";
+      nav.insertBefore(span, nav.firstChild);
+    }
+
+    if(logoutBtn) logoutBtn.style.display="inline-block";
+    if(signinLink) signinLink.style.display="none";
+    if(signupLink) signupLink.style.display="none";
+  } else {
+    // User not logged in
+    const welcome = document.getElementById("user-welcome");
+    if(welcome) welcome.remove();
+    if(logoutBtn) logoutBtn.style.display="none";
+    if(signinLink) signinLink.style.display="inline-block";
+    if(signupLink) signupLink.style.display="inline-block";
+  }
+});
+
+// ---------- LOGOUT ----------
+if(logoutBtn){
+  logoutBtn.addEventListener("click", async () => {
+    await signOut(auth);
+    alert("Logged out successfully.");
+    window.location.reload();
+  });
+}
+
+// ---------- SIGN UP ----------
+const signupForm = document.getElementById("signup-form");
+if(signupForm){
+  signupForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const name = document.getElementById("su-name").value;
+    const email = document.getElementById("su-email").value;
+    const password = document.getElementById("su-password").value;
 
     if(!name || !email || !password){
       alert("Please fill all fields.");
       return;
     }
 
-    let users = JSON.parse(localStorage.getItem("users")) || [];
-    const existingUser = users.find((u) => u.email === email);
-    if(existingUser){
-      alert("Email already registered. Please sign in.");
+    try{
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+      // Set display name
+      await updateProfile(userCredential.user, { displayName: name });
+      alert("Account created successfully! You can now sign in.");
       window.location.href = "signin.html";
-      return;
+    } catch(error){
+      alert(error.message);
     }
-
-    users.push({name,email,password});
-    localStorage.setItem("users", JSON.stringify(users));
-    alert("Account created!");
-    window.location.href = "signin.html";
   });
 }
 
-// Handle Sign In
-if (document.title.includes("Sign In")) {
-  const form = document.querySelector("form");
-  form.addEventListener("submit", (e)=>{
+// ---------- SIGN IN ----------
+const signinForm = document.getElementById("signin-form");
+if(signinForm){
+  signinForm.addEventListener("submit", async (e) => {
     e.preventDefault();
-    const email = form.querySelector("input[type='email']").value;
-    const password = form.querySelector("input[type='password']").value;
-    const users = JSON.parse(localStorage.getItem("users")) || [];
-    const user = users.find(u => u.email===email && u.password===password);
-    if(user){
-      localStorage.setItem("loggedInUser", JSON.stringify(user));
+
+    const email = document.getElementById("si-email").value;
+    const password = document.getElementById("si-password").value;
+
+    try{
+      await signInWithEmailAndPassword(auth, email, password);
       alert("Welcome back!");
-      window.location.href="index.html";
-    } else {
-      alert("Invalid email or password.");
+      window.location.href = "index.html";
+    } catch(error){
+      alert(error.message);
     }
   });
 }
 
-// Show logged in user
-if(document.title === "GLOSPOT"){
-  const user = JSON.parse(localStorage.getItem("loggedInUser"));
-  const nav = document.getElementById("main-nav");
-  const logoutBtn = document.getElementById("logout-btn");
+// ---------- FORGOT PASSWORD ----------
+const forgotForm = document.getElementById("forgot-form");
+if(forgotForm){
+  forgotForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const email = document.getElementById("fp-email").value;
+
+    try{
+      await sendPasswordResetEmail(auth, email);
+      alert("Password reset email sent! Check your inbox.");
+    } catch(error){
+      alert(error.message);
+    }
+  });
+}
+
+// ---------- REDIRECT SIGNED-IN USERS ----------
+onAuthStateChanged(auth, (user) => {
   if(user){
-    const span = document.createElement("span");
-    span.textContent = `👋 Welcome, ${user.name}`;
-    span.style.color = "white";
-    span.style.fontWeight = "bold";
-    span.style.marginRight="10px";
-    nav.insertBefore(span, nav.firstChild);
-    logoutBtn.style.display="inline-block";
-    document.getElementById("signin-link").style.display="none";
-    document.getElementById("signup-link").style.display="none";
-  }
-}
-
-// Logout
-const logoutBtn = document.getElementById("logout-btn");
-if(logoutBtn){
-  logoutBtn.addEventListener("click", ()=>{
-    localStorage.removeItem("loggedInUser");
-    alert("Logged out.");
-    window.location.reload();
-  });
-}
-
-// Redirect signed in users from signup/signin pages
-const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
-if(loggedInUser && (document.title.includes("Sign Up") || document.title.includes("Sign In"))){
-  window.location.href="index.html";
-}
-
-document.addEventListener("DOMContentLoaded", () => {
-  // your existing code here
-});
-
-// Handle Forgot Password / Reset
-if (document.title.includes("Forgot Password")) {
-  const forgotForm = document.getElementById('forgot-form');
-  const resetForm = document.getElementById('reset-form');
-  let currentUserEmail = null;
-
-  // Step 1: Verify the email
-  forgotForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const email = document.getElementById('fp-email').value.trim();
-    const users = JSON.parse(localStorage.getItem('users')) || [];
-    const user = users.find(u => u.email === email);
-    if (!user) {
-      alert('No account found for that email.');
-      return;
+    // Redirect signed-in users away from signup/signin pages
+    if(document.title.includes("Sign Up") || document.title.includes("Sign In")){
+      window.location.href = "index.html";
     }
-    // Show reset form
-    currentUserEmail = email;
-    forgotForm.style.display = 'none';
-    resetForm.style.display = 'block';
-  });
-
-  // Step 2: Reset the password
-  resetForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const p1 = document.getElementById('new-password').value;
-    const p2 = document.getElementById('confirm-password').value;
-    if (p1.length < 4) {
-      alert('Password too short (min 4 chars).');
-      return;
-    }
-    if (p1 !== p2) {
-      alert('Passwords do not match.');
-      return;
-    }
-    const users = JSON.parse(localStorage.getItem('users')) || [];
-    const idx = users.findIndex(u => u.email === currentUserEmail);
-    if (idx === -1) {
-      alert('Unexpected error: user not found.');
-      return;
-    }
-    users[idx].password = p1;
-    localStorage.setItem('users', JSON.stringify(users));
-    alert('Password reset successfully! You can now sign in with your new password.');
-    window.location.href = 'signin.html';
-  });
-}
-
-<script type="module" src="firebase-config.js"></script>
-<script type="module" src="script.js"></script>
-
-import { auth } from './firebase-config.js';
-import { createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-auth.js";
-
-document.getElementById("signup-form").addEventListener("submit", async (e) => {
-  e.preventDefault();
-  const email = document.getElementById("su-email").value;
-  const password = document.getElementById("su-password").value;
-
-  try {
-    await createUserWithEmailAndPassword(auth, email, password);
-    alert("Signup successful! You can now sign in.");
-    window.location.href = "signin.html";
-  } catch (error) {
-    alert(error.message);
-  }
-});
-
-import { auth } from './firebase-config.js';
-import { signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-auth.js";
-
-document.getElementById("signin-form").addEventListener("submit", async (e) => {
-  e.preventDefault();
-  const email = document.getElementById("si-email").value;
-  const password = document.getElementById("si-password").value;
-
-  try {
-    await signInWithEmailAndPassword(auth, email, password);
-    alert("Welcome back!");
-    window.location.href = "index.html";
-  } catch (error) {
-    alert(error.message);
-  }
-});
-
-import { auth } from './firebase-config.js';
-import { sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-auth.js";
-
-document.getElementById("forgot-form").addEventListener("submit", async (e) => {
-  e.preventDefault();
-  const email = document.getElementById("fp-email").value;
-
-  try {
-    await sendPasswordResetEmail(auth, email);
-    alert("Password reset email sent! Check your inbox.");
-  } catch (error) {
-    alert(error.message);
   }
 });
