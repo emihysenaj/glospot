@@ -39,10 +39,10 @@ header {
 /* -------------------- Navigation -------------------- */
 nav {
   display: flex;
-  justify-content: center;
+  justify-content: center; /* horizontal alignment */
   align-items: center;
-  gap: 15px;
-  flex-wrap: wrap;
+  gap: 15px; /* space between links */
+  flex-wrap: wrap; /* allow wrapping if screen is small */
 }
 
 nav a, #logout-btn {
@@ -52,7 +52,7 @@ nav a, #logout-btn {
   padding: 8px 14px;
   border-radius: 5px;
   transition: background 0.3s;
-  display: inline-block;
+  display: inline-block; /* keep horizontal */
 }
 
 nav a.active {
@@ -306,8 +306,9 @@ footer {
 
 /* -------------------- Responsive Design -------------------- */
 @media (max-width: 768px) {
+  /* Keep nav horizontal on mobile */
   nav {
-    flex-direction: column;
+    flex-direction: row;
     gap: 10px;
   }
 
