@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sign Up - GLOSPOT</title>
+  <title>Transportation - GLOSPOT</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -16,24 +16,58 @@
   <nav id="main-nav">
     <a href="index.html">Home</a>
     <a href="packages.html">Packages</a>
-<a href="transportation.html" class="active">Transportation</a>
-    <a href="signup.html" class="btn-nav active" id="signup-link">Sign Up</a>
-    <a href="signin.html" class="btn-nav" id="signin-link">Sign In</a>
+    <a href="transportation.html" class="active">Transportation</a>
+    <a href="signup.html" class="btn-nav">Sign Up</a>
+    <a href="signin.html" class="btn-nav">Sign In</a>
     <button id="logout-btn" style="display:none;">Log Out</button>
   </nav>
 </header>
 
-<section class="form-section">
-  <h2>Create Your Account</h2>
-  <form id="signup-form">
-    <label>Full Name:</label>
-    <input type="text" id="su-name" placeholder="Your Name" required>
-    <label>Email:</label>
-    <input type="email" id="su-email" placeholder="you@example.com" required>
-    <label>Password:</label>
-    <input type="password" id="su-password" placeholder="Enter Password" required>
-    <button type="submit">Sign Up</button>
-  </form>
+<!-- Hero Section -->
+<section id="home" style="background-image: url('images/transport-banner.jpg');">
+  <div class="hero-content">
+    <h2>Reliable Transportation for Your Adventures</h2>
+    <p>We partner with top transportation companies to ensure safe, comfortable, and timely travel for all your trips.</p>
+    <div class="buttons">
+      <button onclick="window.location.href='signup.html'">Book Now</button>
+      <button onclick="window.location.href='contact.html'">Contact Us</button>
+    </div>
+  </div>
+</section>
+
+<!-- Transportation Options Section -->
+<section id="transport-options">
+  <h2>Transportation Options</h2>
+<div class="card-container">
+  <div class="card">
+    <h3>🚌 Bus Services</h3>
+    <p>Comfortable intercity buses for all your travel needs.</p>
+  </div>
+  <div class="card">
+    <h3>🚗 Private Cars</h3>
+    <p>Rent private cars for personal or group trips.</p>
+  </div>
+  <div class="card">
+    <h3>✈️ Flights</h3>
+    <p>Partnered with airlines to offer smooth flight experiences.</p>
+  </div>
+</div>
+</section>
+
+<!-- Company Information Section -->
+<section id="transportation-company">
+  <h2>Our Trusted Partner: GlobeTrans Co.</h2>
+  <p>GlobeTrans Co. is a professional transportation company providing safe, reliable, and comfortable travel solutions for all our clients. Whether it’s city transfers, intercity buses, or airport shuttles, GlobeTrans ensures you reach your destination on time.</p>
+  
+  <h3>Services Offered:</h3>
+  <ul>
+    <li>Airport transfers</li>
+    <li>City sightseeing tours</li>
+    <li>Intercity bus services</li>
+    <li>Private car rentals</li>
+  </ul>
+
+  <p>Contact them at: <a href="mailto:contact@globetrans.com">contact@globetrans.com</a> or call +355 69 987 6543</p>
 </section>
 
 <footer>
@@ -42,5 +76,6 @@
 
 <script type="module" src="firebase-config.js"></script>
 <script type="module" src="script.js"></script>
+
 </body>
 </html>
