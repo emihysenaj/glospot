@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Forgot Password</title>
-<link rel="stylesheet" href="style.css" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Forgot Password - GLOSPOT</title>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
@@ -25,13 +25,10 @@
 
 <section class="form-section">
   <h2>Reset your password</h2>
-  <p>Enter your email to verify your account and set a new password.</p>
-
   <form id="forgot-form">
     <input type="email" id="fp-email" placeholder="you@example.com" required />
     <button type="submit">Send Reset Email</button>
   </form>
-
   <p style="text-align:center;"><a href="signin.html">Back to Sign In</a></p>
 </section>
 
@@ -39,7 +36,9 @@
   <p>© 2025 GLOSPOT</p>
 </footer>
 
-<script type="module" src="firebase-config.js"></script>
-<script type="module" src="script.js"></script>
+<script src="https://www.gstatic.com/firebasejs/12.5.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/12.5.0/firebase-auth.js"></script>
+<script src="firebase-config.js"></script>
+<script src="script.js"></script>
 </body>
 </html>
