@@ -1,12 +1,18 @@
-// script.js
+import { auth } from './firebase-config.js';
+import { 
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  sendPasswordResetEmail,
+  onAuthStateChanged,
+  signOut,
+  updateProfile
+} from "https://www.gstatic.com/firebasejs/12.5.0/firebase-auth.js";
 
-console.log("Welcome to GLOSPOT!");
-
-// ---------- NAVBAR & LOGGED-IN STATE ----------
+// NAVBAR & LOGGED-IN STATE
 const nav = document.getElementById("main-nav");
 const logoutBtn = document.getElementById("logout-btn");
 
-auth.onAuthStateChanged(user => {
+onAuthStateChanged(auth, (user) => {
   const signinLink = document.getElementById("signin-link");
   const signupLink = document.getElementById("signup-link");
 
@@ -33,20 +39,19 @@ auth.onAuthStateChanged(user => {
   }
 });
 
-// ---------- LOGOUT ----------
+// LOGOUT
 if(logoutBtn){
-  logoutBtn.addEventListener("click", () => {
-    auth.signOut().then(() => {
-      alert("Logged out successfully.");
-      window.location.reload();
-    });
+  logoutBtn.addEventListener("click", async () => {
+    await signOut(auth);
+    alert("Logged out successfully.");
+    window.location.reload();
   });
 }
 
-// ---------- SIGN UP ----------
+// SIGN UP
 const signupForm = document.getElementById("signup-form");
 if(signupForm){
-  signupForm.addEventListener("submit", e => {
+  signupForm.addEventListener("submit", async (e) => {
     e.preventDefault();
 
     const name = document.getElementById("su-name").value;
@@ -58,60 +63,55 @@ if(signupForm){
       return;
     }
 
-    auth.createUserWithEmailAndPassword(email, password)
-      .then(userCredential => {
-        return userCredential.user.updateProfile({ displayName: name });
-      })
-      .then(() => {
-        alert("Account created successfully! You can now sign in.");
-        window.location.href = "signin.html";
-      })
-      .catch(error => {
-        alert(error.message);
-      });
+    try{
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+      await updateProfile(userCredential.user, { displayName: name });
+      alert("Account created successfully! You can now sign in.");
+      window.location.href = "signin.html";
+    } catch(error){
+      alert(error.message);
+    }
   });
 }
 
-// ---------- SIGN IN ----------
+// SIGN IN
 const signinForm = document.getElementById("signin-form");
 if(signinForm){
-  signinForm.addEventListener("submit", e => {
+  signinForm.addEventListener("submit", async (e) => {
     e.preventDefault();
 
     const email = document.getElementById("si-email").value;
     const password = document.getElementById("si-password").value;
 
-    auth.signInWithEmailAndPassword(email, password)
-      .then(() => {
-        alert("Welcome back!");
-        window.location.href = "index.html";
-      })
-      .catch(error => {
-        alert(error.message);
-      });
+    try{
+      await signInWithEmailAndPassword(auth, email, password);
+      alert("Welcome back!");
+      window.location.href = "index.html";
+    } catch(error){
+      alert(error.message);
+    }
   });
 }
 
-// ---------- FORGOT PASSWORD ----------
+// FORGOT PASSWORD
 const forgotForm = document.getElementById("forgot-form");
 if(forgotForm){
-  forgotForm.addEventListener("submit", e => {
+  forgotForm.addEventListener("submit", async (e) => {
     e.preventDefault();
 
     const email = document.getElementById("fp-email").value;
 
-    auth.sendPasswordResetEmail(email)
-      .then(() => {
-        alert("Password reset email sent! Check your inbox.");
-      })
-      .catch(error => {
-        alert(error.message);
-      });
+    try{
+      await sendPasswordResetEmail(auth, email);
+      alert("Password reset email sent! Check your inbox.");
+    } catch(error){
+      alert(error.message);
+    }
   });
 }
 
-// ---------- REDIRECT SIGNED-IN USERS ----------
-auth.onAuthStateChanged(user => {
+// REDIRECT SIGNED-IN USERS
+onAuthStateChanged(auth, (user) => {
   if(user){
     if(document.title.includes("Sign Up") || document.title.includes("Sign In")){
       window.location.href = "index.html";
