@@ -53,9 +53,9 @@ const signupForm = document.getElementById("signup-form");
 if(signupForm){
   signupForm.addEventListener("submit", async (e) => {
     e.preventDefault();
-    const name = document.getElementById("su-name").value.trim();
-    const email = document.getElementById("su-email").value.trim();
-    const password = document.getElementById("su-password").value.trim();
+    const name = document.getElementById("su-name").value;
+    const email = document.getElementById("su-email").value();
+    const password = document.getElementById("su-password").value;
 
     if(!name || !email || !password){
       alert("Please fill all fields.");
