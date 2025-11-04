@@ -7,7 +7,6 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
 <header>
   <div class="logo-container">
     <img src="images/glospot-logo.jpg" alt="GLOSPOT Logo" class="logo">
@@ -28,13 +27,14 @@
   <form id="signin-form">
     <label for="si-email">Email:</label>
     <input type="email" id="si-email" placeholder="you@example.com" required>
+
     <label for="si-password">Password:</label>
     <input type="password" id="si-password" placeholder="Enter Password" required>
+
     <button type="submit">Sign In</button>
-    <p class="forgot-link">
-      <a href="forgot.html">Forgot password?</a>
-    </p>
+    <p class="forgot-link"><a href="forgot.html">Forgot password?</a></p>
   </form>
+  <p style="text-align:center;"><a href="signup.html">Don't have an account? Sign Up</a></p>
 </section>
 
 <footer>
@@ -42,7 +42,6 @@
 </footer>
 
 <script type="module" src="firebase-config.js"></script>
-<script type="module" src="script.js"></script>
-
+<script type="module" src="auth.js"></script>
 </body>
 </html>
