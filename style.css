@@ -28,29 +28,21 @@ header {
   align-items: center;
   justify-content: center;
   gap: 12px;
+  flex-wrap: wrap;
 }
 
 .logo {
-  width: 150px;
+  width: 120px;
   height: auto;
   display: block;
 }
 
 /* -------------------- Navigation -------------------- */
-nav ul {
+nav {
   display: flex;
-  flex-direction: row;     /* horizontal links */
   justify-content: center;
-  align-items: center;
-  gap: 15px;
-  padding: 0;
-  margin: 10px 0 0 0;
-  list-style: none;
-  flex-wrap: wrap;         /* wrap if screen is very small */
-}
-
-nav ul li {
-  display: inline-block;
+  flex-wrap: wrap;
+  margin-top: 10px;
 }
 
 nav a, #logout-btn {
@@ -59,8 +51,9 @@ nav a, #logout-btn {
   font-weight: 600;
   padding: 8px 14px;
   border-radius: 5px;
+  margin: 5px;
   transition: background 0.3s;
-  display: inline-block;   /* keep horizontal */
+  display: inline-block;
 }
 
 nav a.active {
@@ -92,7 +85,6 @@ nav a:hover, #logout-btn:hover {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-image: url('images/beach.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -178,7 +170,7 @@ nav a:hover, #logout-btn:hover {
   box-shadow: 0 6px 15px rgba(0,0,0,0.15);
 }
 
-/* -------------------- Tours / Guides -------------------- */
+/* -------------------- Tours / Guides / Cards -------------------- */
 .card-container {
   display: flex;
   flex-wrap: wrap;
@@ -200,41 +192,6 @@ nav a:hover, #logout-btn:hover {
 .card:hover {
   transform: translateY(-5px);
   box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-}
-
-/* -------------------- Gallery -------------------- */
-.gallery {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 20px;
-  padding: 40px;
-  text-align: center;
-}
-
-.gallery img {
-  width: 100%;
-  height: auto;
-  border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-  transition: transform 0.3s, box-shadow 0.3s;
-}
-
-.gallery img:hover {
-  transform: scale(1.05);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-}
-
-/* -------------------- Contact -------------------- */
-#contact {
-  text-align: center;
-  padding: 40px 20px;
-  background: linear-gradient(90deg, #00b4d8, #90e0ef);
-  color: white;
-}
-
-#contact h2 {
-  font-size: 2em;
-  margin-bottom: 10px;
 }
 
 /* -------------------- Forms -------------------- */
@@ -275,33 +232,24 @@ nav a:hover, #logout-btn:hover {
   border-radius: 8px;
   font-size: 16px;
   cursor: pointer;
+  transition: background 0.3s;
 }
 
 .form-section button:hover {
   background-color: #0096c7;
 }
 
-/* -------------------- Map Section -------------------- */
-#map-section {
-  padding: 50px 20px;
+/* -------------------- Contact -------------------- */
+#contact {
   text-align: center;
+  padding: 40px 20px;
+  background: linear-gradient(90deg, #00b4d8, #90e0ef);
+  color: white;
 }
 
-#map-search {
-  padding: 10px;
-  width: 90%;
-  max-width: 400px;
-  margin: 10px auto 20px;
-  display: block;
-  border-radius: 6px;
-  border: 1px solid #ccc;
-}
-
-#map {
-  height: 500px;
-  width: 100%;
-  border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+#contact h2 {
+  font-size: 2em;
+  margin-bottom: 10px;
 }
 
 /* -------------------- Footer -------------------- */
@@ -314,15 +262,31 @@ footer {
 }
 
 /* -------------------- Responsive Design -------------------- */
+@media (max-width: 1024px) {
+  .hero-content h2 {
+    font-size: 2.2em;
+  }
+  .hero-content p {
+    font-size: 1.1em;
+  }
+}
+
 @media (max-width: 768px) {
-  /* Nav stays horizontal but wraps if needed */
-  nav ul {
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 10px;
+  header, nav {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  nav {
+    margin-top: 10px;
   }
 
   #packages ul {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .card-container {
     flex-direction: column;
     align-items: center;
   }
@@ -336,7 +300,20 @@ footer {
   }
 
   .hero-content .buttons button {
-    width: 100%;
+    width: 80%;
     max-width: 250px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-content h2 {
+    font-size: 1.5em;
+  }
+  .hero-content p {
+    font-size: 0.95em;
+  }
+  .form-section {
+    margin: 30px 10px;
+    padding: 20px;
   }
 }
