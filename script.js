@@ -1,13 +1,4 @@
 // script.js
-import { auth } from './firebase-config.js';
-import { 
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-  sendPasswordResetEmail,
-  onAuthStateChanged,
-  signOut,
-  updateProfile
-} from "https://www.gstatic.com/firebasejs/12.5.0/firebase-auth.js";
 
 console.log("Welcome to GLOSPOT!");
 
@@ -15,12 +6,11 @@ console.log("Welcome to GLOSPOT!");
 const nav = document.getElementById("main-nav");
 const logoutBtn = document.getElementById("logout-btn");
 
-onAuthStateChanged(auth, (user) => {
+auth.onAuthStateChanged(user => {
   const signinLink = document.getElementById("signin-link");
   const signupLink = document.getElementById("signup-link");
 
   if(user){
-    // Show Welcome message
     if(!document.getElementById("user-welcome")){
       const span = document.createElement("span");
       span.id = "user-welcome";
@@ -35,7 +25,6 @@ onAuthStateChanged(auth, (user) => {
     if(signinLink) signinLink.style.display="none";
     if(signupLink) signupLink.style.display="none";
   } else {
-    // User not logged in
     const welcome = document.getElementById("user-welcome");
     if(welcome) welcome.remove();
     if(logoutBtn) logoutBtn.style.display="none";
@@ -46,17 +35,18 @@ onAuthStateChanged(auth, (user) => {
 
 // ---------- LOGOUT ----------
 if(logoutBtn){
-  logoutBtn.addEventListener("click", async () => {
-    await signOut(auth);
-    alert("Logged out successfully.");
-    window.location.reload();
+  logoutBtn.addEventListener("click", () => {
+    auth.signOut().then(() => {
+      alert("Logged out successfully.");
+      window.location.reload();
+    });
   });
 }
 
 // ---------- SIGN UP ----------
 const signupForm = document.getElementById("signup-form");
 if(signupForm){
-  signupForm.addEventListener("submit", async (e) => {
+  signupForm.addEventListener("submit", e => {
     e.preventDefault();
 
     const name = document.getElementById("su-name").value;
@@ -68,58 +58,61 @@ if(signupForm){
       return;
     }
 
-    try{
-      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-      // Set display name
-      await updateProfile(userCredential.user, { displayName: name });
-      alert("Account created successfully! You can now sign in.");
-      window.location.href = "signin.html";
-    } catch(error){
-      alert(error.message);
-    }
+    auth.createUserWithEmailAndPassword(email, password)
+      .then(userCredential => {
+        return userCredential.user.updateProfile({ displayName: name });
+      })
+      .then(() => {
+        alert("Account created successfully! You can now sign in.");
+        window.location.href = "signin.html";
+      })
+      .catch(error => {
+        alert(error.message);
+      });
   });
 }
 
 // ---------- SIGN IN ----------
 const signinForm = document.getElementById("signin-form");
 if(signinForm){
-  signinForm.addEventListener("submit", async (e) => {
+  signinForm.addEventListener("submit", e => {
     e.preventDefault();
 
     const email = document.getElementById("si-email").value;
     const password = document.getElementById("si-password").value;
 
-    try{
-      await signInWithEmailAndPassword(auth, email, password);
-      alert("Welcome back!");
-      window.location.href = "index.html";
-    } catch(error){
-      alert(error.message);
-    }
+    auth.signInWithEmailAndPassword(email, password)
+      .then(() => {
+        alert("Welcome back!");
+        window.location.href = "index.html";
+      })
+      .catch(error => {
+        alert(error.message);
+      });
   });
 }
 
 // ---------- FORGOT PASSWORD ----------
 const forgotForm = document.getElementById("forgot-form");
 if(forgotForm){
-  forgotForm.addEventListener("submit", async (e) => {
+  forgotForm.addEventListener("submit", e => {
     e.preventDefault();
 
     const email = document.getElementById("fp-email").value;
 
-    try{
-      await sendPasswordResetEmail(auth, email);
-      alert("Password reset email sent! Check your inbox.");
-    } catch(error){
-      alert(error.message);
-    }
+    auth.sendPasswordResetEmail(email)
+      .then(() => {
+        alert("Password reset email sent! Check your inbox.");
+      })
+      .catch(error => {
+        alert(error.message);
+      });
   });
 }
 
 // ---------- REDIRECT SIGNED-IN USERS ----------
-onAuthStateChanged(auth, (user) => {
+auth.onAuthStateChanged(user => {
   if(user){
-    // Redirect signed-in users away from signup/signin pages
     if(document.title.includes("Sign Up") || document.title.includes("Sign In")){
       window.location.href = "index.html";
     }
