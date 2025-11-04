@@ -18,7 +18,7 @@ body {
 header {
   background: linear-gradient(90deg, #0077b6, #00b4d8);
   color: white;
-  padding: 20px 0;
+  padding: 15px 0;
   text-align: center;
   box-shadow: 0 2px 10px rgba(0,0,0,0.15);
 }
@@ -37,12 +37,19 @@ header {
   display: block;
 }
 
+header h1 {
+  margin: 0;
+  font-size: 1.8em;
+  font-weight: 700;
+}
+
 /* -------------------- Navigation -------------------- */
-nav {
+nav#main-nav {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
   margin-top: 10px;
+  gap: 10px;
 }
 
 nav a, #logout-btn {
@@ -51,8 +58,7 @@ nav a, #logout-btn {
   font-weight: 600;
   padding: 8px 14px;
   border-radius: 5px;
-  margin: 5px;
-  transition: background 0.3s;
+  transition: background 0.3s, transform 0.2s;
   display: inline-block;
 }
 
@@ -61,10 +67,10 @@ nav a.active {
 }
 
 nav a:hover, #logout-btn:hover {
-  background: rgba(255,255,255,0.2);
+  background-color: rgba(255,255,255,0.2);
 }
 
-/* Logout button style */
+/* Logout button */
 #logout-btn {
   background-color: #d62828;
   border: none;
@@ -132,7 +138,7 @@ nav a:hover, #logout-btn:hover {
   transform: scale(1.05);
 }
 
-/* -------------------- Packages -------------------- */
+/* -------------------- Packages Section -------------------- */
 #packages {
   text-align: center;
   padding: 50px 20px;
@@ -170,7 +176,7 @@ nav a:hover, #logout-btn:hover {
   box-shadow: 0 6px 15px rgba(0,0,0,0.15);
 }
 
-/* -------------------- Tours / Guides / Cards -------------------- */
+/* -------------------- Cards for Tours/Guides/Transport -------------------- */
 .card-container {
   display: flex;
   flex-wrap: wrap;
@@ -239,7 +245,7 @@ nav a:hover, #logout-btn:hover {
   background-color: #0096c7;
 }
 
-/* -------------------- Contact -------------------- */
+/* -------------------- Contact Section -------------------- */
 #contact {
   text-align: center;
   padding: 40px 20px;
@@ -272,13 +278,9 @@ footer {
 }
 
 @media (max-width: 768px) {
-  header, nav {
+  header, nav#main-nav {
     flex-direction: column;
     text-align: center;
-  }
-
-  nav {
-    margin-top: 10px;
   }
 
   #packages ul {
