@@ -1,8 +1,6 @@
-// Import Firebase modules
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-app.js";
 import { getAuth } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-auth.js";
 
-// Your web app's Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyDnOLBrMG-WBsEhAjRDYKVb897JUqa2zDE",
   authDomain: "glospot-eed75.firebaseapp.com",
@@ -13,6 +11,5 @@ const firebaseConfig = {
   measurementId: "G-1VCH03DH82"
 };
 
-// Initialize Firebase
 const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
