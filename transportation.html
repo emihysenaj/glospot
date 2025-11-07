@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Transportation - GLOSPOT</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <div class="logo-container">
+    <img src="images/glospot-logo.png" alt="GLOSPOT Logo" class="logo">
+    <h1>GLOSPOT</h1>
+  </div>
+  <nav id="main-nav">
+    <a href="index.html">Home</a>
+    <a href="packages.html">Packages</a>
+    <a href="transportation.html" class="active">Transportation</a>
+    <a href="signup.html" id="signup-link">Sign Up</a>
+    <a href="signin.html" id="signin-link">Sign In</a>
+    <button id="logout-btn" style="display:none;">Log Out</button>
+  </nav>
+</header>
+
+<section id="home" style="background-image: url('images/transport-banner.jpg');">
+  <div class="hero-content">
+    <h2>Reliable Transportation for Your Adventures</h2>
+    <p>We partner with top transportation companies to ensure safe, comfortable, and timely travel for all your trips.</p>
+    <div class="buttons">
+      <button onclick="window.location.href='signup.html'">Book Now</button>
+      <button onclick="window.location.href='index.html#contact'">Contact Us</button>
+    </div>
+  </div>
+</section>
+
+<section id="transport-options">
+  <h2>Transportation Options</h2>
+  <div class="card-container">
+    <div class="card">
+      <h3>🚌 Bus Services</h3>
+      <p>Comfortable intercity buses for all your travel needs.</p>
+    </div>
+    <div class="card">
+      <h3>🚗 Private Cars</h3>
+      <p>Rent private cars for personal or group trips.</p>
+    </div>
+    <div class="card">
+      <h3>✈️ Flights</h3>
+      <p>Partnered with airlines to offer smooth flight experiences.</p>
+    </div>
+  </div>
+</section>
+
+<section id="transportation-company">
+  <h2>Our Trusted Partner: MONITRAVEL</h2>
+  <p>MONITRAVEL is a professional transportation company providing safe, reliable, and comfortable travel solutions for all our clients.</p>
+  <h3>Services Offered:</h3>
+  <ul>
+    <li>Airport transfers</li>
+    <li>City sightseeing tours</li>
+    <li>Intercity bus services</li>
+    <li>Private car rentals</li>
+  </ul>
+  <p>Contact: <a href="mailto:contact@globetrans.com">contact@globetrans.com</a> | +355 69 987 6543</p>
+</section>
+
+<footer>
+  <p>© 2025 GLOSPOT</p>
+</footer>
+
+<script type="module" src="firebase-config.js"></script>
+<script type="module" src="auth.js"></script>
+</body>
+</html>
