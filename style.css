@@ -36,9 +36,9 @@ header {
   color: white;
   text-decoration: none;
   margin-left: 15px;
-  font-weight: bold;         /* Updated for bolder text */
-  font-size: 1.1em;          /* Slightly larger for visibility */
-  padding: 8px 12px;         /* Added padding for better clickability */
+  font-weight: bold;
+  font-size: 1.1em;
+  padding: 8px 12px;
   border-radius: 5px;
   transition: background-color 0.3s, color 0.3s;
 }
@@ -49,7 +49,7 @@ header {
 }
 
 #main-nav .active {
-  border-bottom: 3px solid #ffd700;  /* Highlight active page */
+  border-bottom: 3px solid #ffd700;
   padding-bottom: 3px;
 }
 
@@ -67,17 +67,32 @@ header {
   background-color: #e63b3b;
 }
 
-/* ===== Hero Section ===== */
-section#home, section.hero {
-  height: 70vh;
+/* ===== Hero Section (Updated) ===== */
+section#home.hero {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-size: cover;
-  background-position: center;
-  color: white;
+  padding: 40px 20px;
+  background-color: #ccc; /* fallback background */
+  min-height: 70vh;
+  gap: 40px;
+  flex-wrap: wrap; /* allows wrapping on smaller screens */
+}
+
+.hero-image {
+  max-width: 600px;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  object-fit: contain;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.hero-content {
+  max-width: 600px;
+  color: #004aad;
   text-align: center;
-  position: relative;
+  flex: 1 1 300px; /* flexible width */
 }
 
 .hero-content h2 {
@@ -89,6 +104,7 @@ section#home, section.hero {
 .hero-content p {
   font-size: 1.2rem;
   margin-bottom: 20px;
+  color: #333;
 }
 
 .hero-content .buttons button {
@@ -107,116 +123,18 @@ section#home, section.hero {
   background-color: #e6c200;
 }
 
-/* ===== Section Titles ===== */
-section h2 {
+/* ===== Contact Us Section ===== */
+#contact-us {
   text-align: center;
+  padding: 40px 20px;
+  background-color: #f2f2f2;
+}
+
+#contact-us h2 {
+  color: #004aad;
+  font-weight: bold;
   font-size: 2rem;
-  margin: 40px 0 20px 0;
-  color: #004aad;
-  font-weight: bold;
-}
-
-/* ===== Cards ===== */
-.card-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 20px;
-  padding: 0 20px 40px 20px;
-}
-
-.card {
-  background-color: white;
-  border-radius: 10px;
-  box-shadow: 0px 5px 15px rgba(0,0,0,0.1);
-  padding: 20px;
-  width: 250px;
-  text-align: center;
-  transition: transform 0.3s, box-shadow 0.3s;
-}
-
-.card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0px 10px 20px rgba(0,0,0,0.2);
-}
-
-.card h3 {
-  font-size: 1.3rem;
-  margin-bottom: 10px;
-  font-weight: bold;
-}
-
-.card p {
-  font-size: 1rem;
-}
-
-/* ===== Guides Page Specific ===== */
-#guides .card h3 {
-  color: #004aad;
-}
-
-#guides .card p {
-  color: #555;
-  font-size: 0.95rem;
-}
-
-/* ===== Forms (Sign Up / Sign In) ===== */
-.form-section {
-  max-width: 400px;
-  margin: 50px auto;
-  background-color: white;
-  padding: 30px;
-  border-radius: 10px;
-  box-shadow: 0px 5px 15px rgba(0,0,0,0.1);
-}
-
-.form-section h2 {
-  text-align: center;
   margin-bottom: 20px;
-  color: #004aad;
-  font-weight: bold;
-}
-
-.form-section form label {
-  display: block;
-  margin-bottom: 5px;
-  font-weight: bold;
-}
-
-.form-section form input {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 15px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-}
-
-.form-section form button {
-  width: 100%;
-  padding: 10px;
-  background-color: #004aad;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.form-section form button:hover {
-  background-color: #002e7a;
-}
-
-.forgot-link {
-  text-align: right;
-  margin-top: -10px;
-  margin-bottom: 10px;
-  font-weight: bold;
-  color: #004aad;
-}
-
-.forgot-link:hover {
-  text-decoration: underline;
 }
 
 /* ===== Footer ===== */
@@ -230,18 +148,17 @@ footer {
 }
 
 /* ===== Responsive ===== */
-@media(max-width:768px){
-  .card-container {
+@media (max-width: 768px) {
+  section#home.hero {
     flex-direction: column;
-    align-items: center;
   }
 
-  .hero-content h2 {
-    font-size: 2rem;
+  .hero-content {
+    max-width: 100%;
   }
 
-  .hero-content p {
-    font-size: 1rem;
+  .hero-image {
+    max-width: 100%;
   }
 
   #main-nav a, #main-nav button {
