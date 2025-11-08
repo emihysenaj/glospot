@@ -36,17 +36,21 @@ header {
   color: white;
   text-decoration: none;
   margin-left: 15px;
-  font-weight: 500;
-  transition: color 0.3s;
+  font-weight: bold;         /* Updated for bolder text */
+  font-size: 1.1em;          /* Slightly larger for visibility */
+  padding: 8px 12px;         /* Added padding for better clickability */
+  border-radius: 5px;
+  transition: background-color 0.3s, color 0.3s;
 }
 
 #main-nav a:hover, #main-nav button:hover {
-  color: #ffd700;
+  background-color: #ffd700;
+  color: black;
 }
 
 #main-nav .active {
-  border-bottom: 2px solid #ffd700;
-  padding-bottom: 2px;
+  border-bottom: 3px solid #ffd700;  /* Highlight active page */
+  padding-bottom: 3px;
 }
 
 #logout-btn {
@@ -55,6 +59,12 @@ header {
   padding: 5px 10px;
   border-radius: 5px;
   cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+#logout-btn:hover {
+  background-color: #e63b3b;
 }
 
 /* ===== Hero Section ===== */
@@ -73,6 +83,7 @@ section#home, section.hero {
 .hero-content h2 {
   font-size: 2.5rem;
   margin-bottom: 10px;
+  font-weight: bold;
 }
 
 .hero-content p {
@@ -88,11 +99,12 @@ section#home, section.hero {
   border-radius: 5px;
   cursor: pointer;
   font-weight: bold;
-  transition: transform 0.3s;
+  transition: transform 0.3s, background-color 0.3s;
 }
 
 .hero-content .buttons button:hover {
   transform: scale(1.1);
+  background-color: #e6c200;
 }
 
 /* ===== Section Titles ===== */
@@ -101,6 +113,7 @@ section h2 {
   font-size: 2rem;
   margin: 40px 0 20px 0;
   color: #004aad;
+  font-weight: bold;
 }
 
 /* ===== Cards ===== */
@@ -130,6 +143,7 @@ section h2 {
 .card h3 {
   font-size: 1.3rem;
   margin-bottom: 10px;
+  font-weight: bold;
 }
 
 .card p {
@@ -160,6 +174,7 @@ section h2 {
   text-align: center;
   margin-bottom: 20px;
   color: #004aad;
+  font-weight: bold;
 }
 
 .form-section form label {
@@ -196,6 +211,12 @@ section h2 {
   text-align: right;
   margin-top: -10px;
   margin-bottom: 10px;
+  font-weight: bold;
+  color: #004aad;
+}
+
+.forgot-link:hover {
+  text-decoration: underline;
 }
 
 /* ===== Footer ===== */
@@ -205,6 +226,7 @@ footer {
   background-color: #004aad;
   color: white;
   margin-top: 40px;
+  font-weight: bold;
 }
 
 /* ===== Responsive ===== */
@@ -220,5 +242,12 @@ footer {
 
   .hero-content p {
     font-size: 1rem;
+  }
+
+  #main-nav a, #main-nav button {
+    margin: 5px 0;
+    font-size: 1.2em;
+    display: block;
+    text-align: center;
   }
 }
