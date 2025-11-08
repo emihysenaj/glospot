@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Transportation - GLOSPOT</title>
+  <title>Sign Up - GLOSPOT</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -16,52 +16,30 @@
   <nav id="main-nav">
     <a href="index.html">Home</a>
     <a href="guides.html">Guides</a>
-    <a href="transportation.html" class="active">Transportation</a>
-    <a href="signup.html" id="signup-link">Sign Up</a>
+    <a href="transportation.html">Transportation</a>
+    <a href="signup.html" class="active" id="signup-link">Sign Up</a>
     <a href="signin.html" id="signin-link">Sign In</a>
     <button id="logout-btn" style="display:none;">Log Out</button>
   </nav>
 </header>
 
-<section id="home" style="background-image: url('images/transport-banner.jpg');">
-  <div class="hero-content">
-    <h2>Reliable Transportation for Your Adventures</h2>
-    <p>We partner with top transportation companies to ensure safe, comfortable, and timely travel for all your trips.</p>
-    <div class="buttons">
-      <button onclick="window.location.href='signup.html'">Book Now</button>
-      <button onclick="window.location.href='index.html#contact'">Contact Us</button>
-    </div>
-  </div>
-</section>
+<section class="form-section">
+  <h2>Create Your Account</h2>
+  <form id="signup-form">
+    <label for="su-name">Full Name:</label>
+    <input type="text" id="su-name" placeholder="Your Name" required>
 
-<section id="transport-options">
-  <h2>Transportation Options</h2>
-  <div class="card-container">
-    <div class="card">
-      <h3>🚌 Bus Services</h3>
-      <p>Comfortable intercity buses for all your travel needs.</p>
-    </div>
-    <div class="card">
-      <h3>🚗 Private Cars</h3>
-      <p>Rent private cars for personal or group trips.</p>
-    </div>
-    <div class="card">
-      <h3>✈️ Flights</h3>
-      <p>Partnered with airlines to offer smooth flight experiences.</p>
-    </div>
-  </div>
-</section>
+    <label for="su-email">Email:</label>
+    <input type="email" id="su-email" placeholder="you@example.com" required>
 
-<section id="transportation-company">
-  <h2>Our Trusted Partner: MONITRAVEL</h2>
-  <p>MONITRAVEL is a professional transportation company providing safe, reliable, and comfortable travel solutions for all our clients.</p>
-  <h3>Services Offered:</h3>
-  <ul>
-    <li>Airport transfers</li>
-    <li>City sightseeing tours</li>
-    <li>Intercity bus services</li>
-  </ul>
-  <p>Contact: <a href="mailto:monitravel1@gmail.com">monitravel1@gmail.com</a> | +355692070443 or +355693136443</p>
+    <label for="su-password">Password:</label>
+    <input type="password" id="su-password" placeholder="Enter Password" required>
+
+    <button type="submit">Sign Up</button>
+  </form>
+  <p style="text-align:center;">
+    Already have an account? <a href="signin.html">Sign In</a>
+  </p>
 </section>
 
 <footer>
