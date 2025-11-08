@@ -22,6 +22,10 @@
       width: 220px;
       box-shadow: 0 5px 15px rgba(0,0,0,0.1);
       transition: transform 0.3s, box-shadow 0.3s;
+      cursor: pointer;
+      text-decoration: none; /* removes underline for <a> */
+      color: inherit; /* keeps text color */
+      display: block;
     }
 
     .card img {
@@ -70,21 +74,21 @@
 <section id="hotels">
   <h2>Our Recommended Hotels</h2>
   <div class="card-container">
-    <div class="card">
+    <a href="https://laidhotel.com/" target="_blank" class="card">
       <img src="images/laidhotel.webp" alt="Laid Hotel">
       <h3>Laid Hotel</h3>
       <p>Luxury stays near the beach with amazing sea views.</p>
-    </div>
-    <div class="card">
+    </a>
+    <a href="https://www.reginacityhotel.com/" target="_blank" class="card">
       <img src="images/reginacity.jpg" alt="Regina City Hotel">
       <h3>Regina City Hotel</h3>
       <p>Cozy mountain retreat for adventure seekers.</p>
-    </div>
-    <div class="card">
+    </a>
+    <a href="https://www.citycentralhotel.com/" target="_blank" class="card">
       <img src="images/hotel3.jpg" alt="City Central Hotel">
       <h3>City Central Hotel</h3>
       <p>Perfect location for exploring city attractions.</p>
-    </div>
+    </a>
   </div>
 </section>
 
