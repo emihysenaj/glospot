@@ -1,29 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Forgot Password</title>
-<link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Forgot Password - GLOSPOT</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
+<!-- Auth message container -->
+<div id="auth-message" style="text-align:center; margin:10px; font-weight:bold;"></div>
 
 <header>
   <div class="logo-container">
     <img src="images/glospot-logo.png" alt="GLOSPOT Logo" class="logo">
     <h1>GLOSPOT</h1>
   </div>
+  <nav id="main-nav">
+    <a href="index.html">Home</a>
+    <a href="guides.html">Guides</a>
+    <a href="transportation.html">Transportation</a>
+    <a href="signup.html" id="signup-link">Sign Up</a>
+    <a href="signin.html" id="signin-link">Sign In</a>
+    <button id="logout-btn" style="display:none;">Log Out</button>
+  </nav>
 </header>
 
 <section class="form-section">
-  <h2>Reset your password</h2>
-  <p>Enter your email to receive a password reset link.</p>
-
+  <h2>Reset Password</h2>
   <form id="forgot-form">
-    <input type="email" id="fp-email" placeholder="you@example.com" required />
+    <label for="fp-email">Email:</label>
+    <input type="email" id="fp-email" placeholder="you@example.com" required>
+
     <button type="submit">Send Reset Email</button>
   </form>
-  <p style="text-align:center;"><a href="signin.html">Back to Sign In</a></p>
 </section>
 
 <footer>
