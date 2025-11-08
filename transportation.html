@@ -5,6 +5,49 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Transportation - GLOSPOT</title>
   <link rel="stylesheet" href="style.css">
+  <style>
+    /* Inline style for hero background */
+    section#hero-transport {
+      position: relative;
+      background-image: url('images/transport-banner.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      min-height: 400px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: white;
+      padding: 40px 20px;
+    }
+
+    section#hero-transport h2 {
+      font-size: 2.5rem;
+      margin-bottom: 15px;
+      text-shadow: 2px 2px 6px rgba(0,0,0,0.6);
+    }
+
+    section#hero-transport p {
+      font-size: 1.2rem;
+      max-width: 600px;
+      text-shadow: 1px 1px 4px rgba(0,0,0,0.6);
+    }
+
+    section#hero-transport .buttons button {
+      margin: 10px;
+      padding: 10px 20px;
+      font-weight: bold;
+      border-radius: 5px;
+      border: none;
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
+
+    section#hero-transport .buttons button:hover {
+      transform: scale(1.1);
+    }
+  </style>
 </head>
 <body>
 
@@ -23,7 +66,8 @@
   </nav>
 </header>
 
-<section id="home" style="background-image: url('images/transport-banner.jpg');">
+<!-- Hero section with background image -->
+<section id="hero-transport">
   <div class="hero-content">
     <h2>Reliable Transportation for Your Adventures</h2>
     <p>We partner with top transportation companies to ensure safe, comfortable, and timely travel for all your trips.</p>
