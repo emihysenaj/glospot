@@ -6,7 +6,6 @@
   <title>Hotels - GLOSPOT</title>
   <link rel="stylesheet" href="style.css">
   <style>
-    /* ===== Cards ===== */
     .card-container {
       display: flex;
       flex-wrap: wrap;
@@ -24,6 +23,8 @@
       box-shadow: 0 5px 15px rgba(0,0,0,0.1);
       transition: transform 0.3s, box-shadow 0.3s;
       cursor: pointer;
+      text-decoration: none; 
+      color: inherit; 
       display: block;
     }
 
@@ -46,96 +47,62 @@
       color: #333;
     }
 
-    .card button {
-      margin-top: 10px;
-      padding: 8px 12px;
-      border: none;
-      border-radius: 5px;
-      background-color: #004aad;
-      color: white;
-      font-weight: bold;
-      cursor: pointer;
-      transition: background-color 0.3s, transform 0.3s;
-    }
-
-    .card button:hover {
-      background-color: #002f6c;
-      transform: scale(1.05);
-    }
-
     .card:hover {
       transform: translateY(-5px);
       box-shadow: 0 8px 20px rgba(0,0,0,0.2);
     }
 
-    /* ===== Booking Modal ===== */
-    #booking-modal {
-      display: none;
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(0,0,0,0.6);
-      justify-content: center;
-      align-items: center;
-      z-index: 1000;
-    }
-
-    #booking-form-container {
-      background: white;
+    /* Booking form */
+    .booking-form {
+      max-width: 500px;
+      margin: 40px auto;
       padding: 30px;
+      background-color: white;
       border-radius: 15px;
-      max-width: 400px;
-      width: 90%;
-      position: relative;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
     }
 
-    #booking-form-container h2 {
+    .booking-form h3 {
+      text-align: center;
       margin-bottom: 20px;
       color: #004aad;
     }
 
-    #booking-form-container label {
+    .booking-form label {
       display: block;
-      margin: 10px 0 5px;
+      margin-bottom: 5px;
+      font-weight: bold;
+      color: #004aad;
     }
 
-    #booking-form-container input, 
-    #booking-form-container select {
+    .booking-form input, .booking-form select {
       width: 100%;
       padding: 8px;
-      margin-bottom: 10px;
+      margin-bottom: 15px;
       border-radius: 5px;
       border: 1px solid #ccc;
     }
 
-    #booking-form-container button {
+    .booking-form button {
       width: 100%;
       padding: 10px;
-      background-color: #004aad;
-      color: white;
+      background-color: #ffd700;
       border: none;
       border-radius: 5px;
       font-weight: bold;
       cursor: pointer;
+      transition: transform 0.3s, background-color 0.3s;
     }
 
-    #booking-form-container button:hover {
-      background-color: #002f6c;
-    }
-
-    #close-modal {
-      position: absolute;
-      top: 10px;
-      right: 15px;
-      font-size: 1.5rem;
-      cursor: pointer;
-      color: #004aad;
+    .booking-form button:hover {
+      transform: scale(1.05);
+      background-color: #e6c200;
     }
 
     #booking-message {
       text-align: center;
-      margin-bottom: 10px;
       font-weight: bold;
+      margin-top: 15px;
       color: green;
     }
   </style>
@@ -161,119 +128,92 @@
 <section id="hotels">
   <h2>Our Recommended Hotels</h2>
   <div class="card-container">
-    <div class="card" data-hotel="Laid Hotel" data-link="https://laidhotel.com/">
+    <div class="card" data-hotel="Laid Hotel">
       <img src="images/laidhotel.webp" alt="Laid Hotel">
       <h3>Laid Hotel</h3>
       <p>Luxury stays near the beach with amazing sea views.</p>
-      <button class="book-btn">Book Now</button>
     </div>
-    <div class="card" data-hotel="Regina City Hotel" data-link="https://reginagroup.al/">
+    <div class="card" data-hotel="Regina City Hotel">
       <img src="images/reginacity.jpg" alt="Regina City Hotel">
       <h3>Regina City Hotel</h3>
       <p>The luxury you are looking to seek with multiple choices.</p>
-      <button class="book-btn">Book Now</button>
     </div>
-    <div class="card" data-hotel="Marian Bay Resort & Casino" data-link="https://marinabay.al/">
+    <div class="card" data-hotel="Marian Bay Resort & Casino">
       <img src="images/marinabay.webp" alt="Marian Bay Resort & Casino">
       <h3>Marian Bay Resort & Casino</h3>
-      <p>A Jewel on the Albanian Riviera</p>
-      <button class="book-btn">Book Now</button>
+      <p>A Jewel on the Albanian Riviera.</p>
     </div>
-    <div class="card" data-hotel="Flamingo Hotel" data-link="https://flamingoalbania.com/">
+    <div class="card" data-hotel="Flamingo Hotel">
       <img src="images/flamingo.jpg" alt="Flamingo Hotel">
       <h3>Flamingo Hotel</h3>
-      <p>A Jewel on the Albanian Riviera</p>
-      <button class="book-btn">Book Now</button>
+      <p>A Jewel on the Albanian Riviera.</p>
     </div>
   </div>
 </section>
 
-<!-- Booking Modal -->
-<div id="booking-modal">
-  <div id="booking-form-container">
-    <span id="close-modal">&times;</span>
-    <h2>Book Your Stay</h2>
-    <div id="booking-message"></div>
-    <form id="booking-form">
-      <label for="hotel-name">Hotel</label>
-      <input type="text" id="hotel-name" name="hotel-name" readonly>
+<section class="booking-form">
+  <h3>Book Your Stay</h3>
+  <label for="hotel-select">Select Hotel:</label>
+  <select id="hotel-select">
+    <option value="">-- Choose a Hotel --</option>
+    <option value="Laid Hotel">Laid Hotel</option>
+    <option value="Regina City Hotel">Regina City Hotel</option>
+    <option value="Marian Bay Resort & Casino">Marian Bay Resort & Casino</option>
+    <option value="Flamingo Hotel">Flamingo Hotel</option>
+  </select>
 
-      <label for="guest-name">Your Name</label>
-      <input type="text" id="guest-name" name="guest-name" required>
+  <label for="name">Full Name:</label>
+  <input type="text" id="name" placeholder="Your Name" required>
 
-      <label for="guest-email">Email</label>
-      <input type="email" id="guest-email" name="guest-email" required>
+  <label for="email">Email:</label>
+  <input type="email" id="email" placeholder="you@example.com" required>
 
-      <label for="guest-phone">Phone</label>
-      <input type="text" id="guest-phone" name="guest-phone" required>
+  <label for="phone">Phone:</label>
+  <input type="text" id="phone" placeholder="Your Phone Number" required>
 
-      <label for="checkin-date">Check-in Date</label>
-      <input type="date" id="checkin-date" name="checkin-date" required>
+  <label for="checkin">Check-In Date:</label>
+  <input type="date" id="checkin" required>
 
-      <label for="checkout-date">Check-out Date</label>
-      <input type="date" id="checkout-date" name="checkout-date" required>
+  <label for="checkout">Check-Out Date:</label>
+  <input type="date" id="checkout" required>
 
-      <button type="submit">Confirm Booking</button>
-    </form>
-  </div>
-</div>
+  <button id="book-btn">Book Now</button>
+  <div id="booking-message"></div>
+</section>
 
 <footer>
   <p>© 2025 GLOSPOT</p>
 </footer>
 
+<!-- Firebase Scripts -->
+<script type="module" src="firebase-config.js"></script>
 <script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-app.js";
-  import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-firestore.js";
-  import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-auth.js";
+  import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-firestore.js";
 
-  const firebaseConfig = {
-    apiKey: "AIzaSyDnOLBrMG-WBsEhAjRDYKVb897JUqa2zDE",
-    authDomain: "glospot-eed75.firebaseapp.com",
-    projectId: "glospot-eed75",
-    storageBucket: "glospot-eed75.appspot.com",
-    messagingSenderId: "235809233045",
-    appId: "1:235809233045:web:f0ab9a813df1e286c2e39c",
-    measurementId: "G-1VCH03DH82"
-  };
+  const db = getFirestore();
 
-  const app = initializeApp(firebaseConfig);
-  const db = getFirestore(app);
+  const bookBtn = document.getElementById("book-btn");
+  const hotelSelect = document.getElementById("hotel-select");
+  const nameInput = document.getElementById("name");
+  const emailInput = document.getElementById("email");
+  const phoneInput = document.getElementById("phone");
+  const checkinInput = document.getElementById("checkin");
+  const checkoutInput = document.getElementById("checkout");
+  const bookingMessage = document.getElementById("booking-message");
 
-  const bookingModal = document.getElementById('booking-modal');
-  const closeModal = document.getElementById('close-modal');
-  const bookingForm = document.getElementById('booking-form');
-  const hotelNameInput = document.getElementById('hotel-name');
-  const bookingMessage = document.getElementById('booking-message');
+  bookBtn.addEventListener("click", async () => {
+    const hotel = hotelSelect.value;
+    const name = nameInput.value.trim();
+    const email = emailInput.value.trim();
+    const phone = phoneInput.value.trim();
+    const checkin = checkinInput.value;
+    const checkout = checkoutInput.value;
 
-  // Open modal on "Book Now"
-  document.querySelectorAll('.book-btn').forEach(btn => {
-    btn.addEventListener('click', (e) => {
-      const card = e.target.closest('.card');
-      const hotelName = card.dataset.hotel;
-      const hotelLink = card.dataset.link;
-      hotelNameInput.value = hotelName;
-      bookingForm.dataset.link = hotelLink; // store link for redirect
-      bookingModal.style.display = 'flex';
-    });
-  });
-
-  // Close modal
-  closeModal.addEventListener('click', () => bookingModal.style.display = 'none');
-  window.addEventListener('click', (e) => {
-    if(e.target === bookingModal) bookingModal.style.display = 'none';
-  });
-
-  // Submit booking
-  bookingForm.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const hotel = hotelNameInput.value;
-    const name = document.getElementById('guest-name').value;
-    const email = document.getElementById('guest-email').value;
-    const phone = document.getElementById('guest-phone').value;
-    const checkin = document.getElementById('checkin-date').value;
-    const checkout = document.getElementById('checkout-date').value;
-    const hotelLink = bookingForm.dataset.link;
+    if (!hotel || !name || !email || !phone || !checkin || !checkout) {
+      bookingMessage.textContent = "Please fill all fields.";
+      bookingMessage.style.color = "red";
+      return;
+    }
 
     try {
       await addDoc(collection(db, "reservations"), {
@@ -283,41 +223,37 @@
         phone,
         checkin,
         checkout,
-        timestamp: new Date()
+        timestamp: serverTimestamp()
       });
 
-      bookingMessage.textContent = "Booking successful! Redirecting...";
-      bookingForm.reset();
+      bookingMessage.textContent = "Reservation successful!";
+      bookingMessage.style.color = "green";
 
-      setTimeout(() => {
-        bookingModal.style.display = 'none';
-        window.open(hotelLink, '_blank'); // redirect to hotel website
-        bookingMessage.textContent = "";
-      }, 1500);
+      // Clear form
+      hotelSelect.value = "";
+      nameInput.value = "";
+      emailInput.value = "";
+      phoneInput.value = "";
+      checkinInput.value = "";
+      checkoutInput.value = "";
 
-    } catch (err) {
-      bookingMessage.style.color = 'red';
-      bookingMessage.textContent = "Error saving booking. Please try again.";
+    } catch (error) {
+      console.error("Error booking:", error);
+      bookingMessage.textContent = "Failed to make reservation.";
+      bookingMessage.style.color = "red";
     }
   });
 
-  // Firebase Auth: show/hide nav links
-  const auth = getAuth();
-  onAuthStateChanged(auth, user => {
-    const logoutBtn = document.getElementById("logout-btn");
-    const signinLink = document.getElementById("signin-link");
-    const signupLink = document.getElementById("signup-link");
-    if(user){
-      logoutBtn.style.display = "inline-block";
-      signinLink.style.display = "none";
-      signupLink.style.display = "none";
-    } else {
-      logoutBtn.style.display = "none";
-      signinLink.style.display = "inline-block";
-      signupLink.style.display = "inline-block";
-    }
+  // Optional: Click on hotel card automatically selects it in the form
+  document.querySelectorAll(".card").forEach(card => {
+    card.addEventListener("click", () => {
+      const hotelName = card.getAttribute("data-hotel");
+      hotelSelect.value = hotelName;
+      window.scrollTo({ top: document.querySelector(".booking-form").offsetTop - 20, behavior: "smooth" });
+    });
   });
 </script>
 
+<script type="module" src="auth.js"></script>
 </body>
 </html>
