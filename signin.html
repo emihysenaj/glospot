@@ -5,11 +5,78 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sign In - GLOSPOT</title>
   <link rel="stylesheet" href="style.css">
+  <style>
+    .form-section {
+      max-width: 400px;
+      margin: 40px auto;
+      padding: 30px;
+      background-color: white;
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    .form-section h2 {
+      text-align: center;
+      color: #004aad;
+      margin-bottom: 20px;
+    }
+
+    .form-section label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+      color: #004aad;
+    }
+
+    .form-section input {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 15px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    .form-section button {
+      width: 100%;
+      padding: 10px;
+      background-color: #ffd700;
+      border: none;
+      border-radius: 5px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: transform 0.3s, background-color 0.3s;
+    }
+
+    .form-section button:hover {
+      transform: scale(1.05);
+      background-color: #e6c200;
+    }
+
+    #auth-message {
+      text-align: center;
+      font-weight: bold;
+      margin-bottom: 15px;
+    }
+
+    .form-section p {
+      text-align: center;
+    }
+
+    .form-section a {
+      color: #004aad;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    .form-section a:hover {
+      text-decoration: underline;
+    }
+  </style>
 </head>
 <body>
 
 <!-- Auth message container -->
-<div id="auth-message" style="text-align:center; margin:10px; font-weight:bold;"></div>
+<div id="auth-message"></div>
 
 <header>
   <div class="logo-container">
@@ -18,6 +85,7 @@
   </div>
   <nav id="main-nav">
     <a href="index.html">Home</a>
+    <a href="hotels.html">Hotels</a>
     <a href="guides.html">Guides</a>
     <a href="transportation.html">Transportation</a>
     <a href="signup.html" id="signup-link">Sign Up</a>
@@ -37,9 +105,8 @@
 
     <button type="submit">Sign In</button>
   </form>
-  <p style="text-align:center;">
-    Forgot password? <a href="forgot-password.html">Reset Here</a>
-  </p>
+  <p>Forgot password? <a href="forgot-password.html">Reset Here</a></p>
+  <p>Don't have an account? <a href="signup.html">Sign Up</a></p>
 </section>
 
 <footer>
