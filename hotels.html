@@ -6,31 +6,12 @@
   <title>Hotel - GLOSPOT</title>
   <link rel="stylesheet" href="style.css">
   <style>
-    /* Hotel Page Enhancements */
-    #hotel {
-      text-align: center;
-      padding: 40px 20px;
-    }
-
-    #hotel h2 {
-      color: #004aad;
-      font-weight: bold;
-      font-size: 2rem;
-      margin-bottom: 20px;
-    }
-
-    #hotel p {
-      font-size: 1.1rem;
-      margin-bottom: 40px;
-      color: #333;
-    }
-
     .card-container {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
       gap: 30px;
-      padding: 0 20px;
+      padding: 40px 20px;
     }
 
     .card {
@@ -44,10 +25,10 @@
     }
 
     .card img {
-      width: 120px;
-      height: 100px;
-      object-fit: cover;
+      width: 100%;
+      height: 150px;
       border-radius: 10px;
+      object-fit: cover;
       margin-bottom: 15px;
     }
 
@@ -66,12 +47,6 @@
       transform: translateY(-5px);
       box-shadow: 0 8px 20px rgba(0,0,0,0.2);
     }
-
-    @media (max-width: 768px) {
-      .card-container {
-        gap: 20px;
-      }
-    }
   </style>
 </head>
 <body>
@@ -83,33 +58,32 @@
   </div>
   <nav id="main-nav">
     <a href="index.html">Home</a>
+    <a href="hotel.html" class="active">Hotel</a>
     <a href="guides.html">Guides</a>
     <a href="transportation.html">Transportation</a>
-    <a href="hotel.html" class="active">Hotel</a>
     <a href="signup.html" id="signup-link">Sign Up</a>
     <a href="signin.html" id="signin-link">Sign In</a>
     <button id="logout-btn" style="display:none;">Log Out</button>
   </nav>
 </header>
 
-<section id="hotel">
-  <h2>Explore the Best Hotels for Your Trip</h2>
-  <p>We partner with top hotels to ensure comfortable and safe accommodations during your travels.</p>
+<section id="hotels">
+  <h2>Our Recommended Hotels</h2>
   <div class="card-container">
     <div class="card">
-      <img src="images/luxury-hotel.jpg" alt="Luxury Hotel">
-      <h3>Luxury Hotels</h3>
-      <p>Experience five-star services and premium amenities.</p>
+      <img src="images/hotel1.jpg" alt="Hotel Riviera">
+      <h3>Hotel Riviera</h3>
+      <p>Luxury stays near the beach with amazing sea views.</p>
     </div>
     <div class="card">
-      <img src="images/budget-hotel.jpg" alt="Budget Hotel">
-      <h3>Budget Hotels</h3>
-      <p>Affordable options without compromising comfort.</p>
+      <img src="images/hotel2.jpg" alt="Mountain Lodge">
+      <h3>Mountain Lodge</h3>
+      <p>Cozy mountain retreat for adventure seekers.</p>
     </div>
     <div class="card">
-      <img src="images/family-hotel.jpg" alt="Family Hotel">
-      <h3>Family Stays</h3>
-      <p>Perfect accommodations for families and group travel.</p>
+      <img src="images/hotel3.jpg" alt="City Central Hotel">
+      <h3>City Central Hotel</h3>
+      <p>Perfect location for exploring city attractions.</p>
     </div>
   </div>
 </section>
