@@ -6,28 +6,63 @@
   <title>Transportation - GLOSPOT</title>
   <link rel="stylesheet" href="style.css">
   <style>
-    section#hero-transport {
-      position: relative;
-      background-image: url('images/transport-banner.jpg');
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      min-height: 400px;
+    /* ===== Card Container ===== */
+    .card-container {
       display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+      padding: 40px 20px;
+    }
+
+    .card {
+      background-color: white;
+      border-radius: 15px;
+      padding: 20px;
+      text-align: center;
+      width: 220px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      transition: transform 0.3s, box-shadow 0.3s;
+      cursor: default;
+    }
+
+    .card h3 {
+      font-size: 1.2rem;
+      color: #004aad;
+      margin-bottom: 10px;
+    }
+
+    .card p {
+      font-size: 1rem;
+      color: #333;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    }
+
+    /* ===== Hero Section ===== */
+    section#hero-transport {
+      display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
       text-align: center;
+      padding: 60px 20px;
+      background-color: #004aad;
       color: white;
-      padding: 40px 20px;
     }
 
     section#hero-transport h2 {
       font-size: 2.5rem;
+      margin-bottom: 10px;
     }
 
     section#hero-transport p {
       font-size: 1.2rem;
-      max-width: 600px;
+      max-width: 700px;
+      margin-bottom: 20px;
     }
 
     section#hero-transport .buttons button {
@@ -37,11 +72,54 @@
       border-radius: 5px;
       border: none;
       cursor: pointer;
-      transition: transform 0.3s;
+      background-color: #ffd700;
+      color: black;
+      transition: transform 0.3s, background-color 0.3s;
     }
 
     section#hero-transport .buttons button:hover {
       transform: scale(1.1);
+      background-color: #e6c200;
+    }
+
+    /* ===== Partner Section ===== */
+    #transportation-company {
+      text-align: center;
+      padding: 40px 20px;
+    }
+
+    #transportation-company h2 {
+      color: #004aad;
+      font-weight: bold;
+      font-size: 2rem;
+      margin-bottom: 15px;
+    }
+
+    #transportation-company h3 {
+      color: #004aad;
+      margin-top: 20px;
+    }
+
+    #transportation-company p, #transportation-company ul {
+      color: #333;
+      margin-bottom: 10px;
+    }
+
+    #transportation-company a {
+      color: #004aad;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    #transportation-company a:hover {
+      text-decoration: underline;
+    }
+
+    /* ===== Responsive ===== */
+    @media (max-width: 768px) {
+      .card-container {
+        gap: 20px;
+      }
     }
   </style>
 </head>
@@ -64,13 +142,11 @@
 </header>
 
 <section id="hero-transport">
-  <div class="hero-content">
-    <h2>Reliable Transportation for Your Adventures</h2>
-    <p>We partner with top transportation companies to ensure safe, comfortable, and timely travel for all your trips.</p>
-    <div class="buttons">
-      <button onclick="window.location.href='signup.html'">Book Now</button>
-      <button onclick="window.location.href='index.html#contact'">Contact Us</button>
-    </div>
+  <h2>Reliable Transportation for Your Adventures</h2>
+  <p>We partner with top transportation providers to ensure safe, comfortable, and timely travel for all your trips.</p>
+  <div class="buttons">
+    <button onclick="window.location.href='signup.html'">Book Now</button>
+    <button onclick="window.location.href='index.html#contact-us'">Contact Us</button>
   </div>
 </section>
 
@@ -93,7 +169,7 @@
 </section>
 
 <section id="transportation-company">
-  <h2>Our Trusted Partner: MONITRAVEL</h2>
+  <h2>Our Trusted Partners</h2>
   <p>MONITRAVEL is a professional transportation company providing safe, reliable, and comfortable travel solutions for all our clients.</p>
   <h3>Services Offered:</h3>
   <ul>
