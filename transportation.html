@@ -26,6 +26,15 @@
       cursor: default;
     }
 
+    .card img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin: 0 auto 15px auto;
+      display: block;
+    }
+
     .card h3 {
       font-size: 1.2rem;
       color: #004aad;
@@ -34,6 +43,15 @@
 
     .card p {
       font-size: 1rem;
+      color: #333;
+      margin-bottom: 10px;
+    }
+
+    .card ul {
+      list-style: disc inside;
+      text-align: left;
+      margin: 10px 0;
+      padding-left: 0;
       color: #333;
     }
 
@@ -82,37 +100,13 @@
       background-color: #e6c200;
     }
 
-    /* ===== Partner Section ===== */
-    #transportation-company {
+    /* ===== Section Titles ===== */
+    section h2 {
       text-align: center;
-      padding: 40px 20px;
-    }
-
-    #transportation-company h2 {
       color: #004aad;
       font-weight: bold;
       font-size: 2rem;
-      margin-bottom: 15px;
-    }
-
-    #transportation-company h3 {
-      color: #004aad;
-      margin-top: 20px;
-    }
-
-    #transportation-company p, #transportation-company ul {
-      color: #333;
-      margin-bottom: 10px;
-    }
-
-    #transportation-company a {
-      color: #004aad;
-      font-weight: bold;
-      text-decoration: none;
-    }
-
-    #transportation-company a:hover {
-      text-decoration: underline;
+      margin-bottom: 30px;
     }
 
     /* ===== Responsive ===== */
@@ -173,6 +167,7 @@
   <div class="card-container">
     <!-- MoniTravel Card -->
     <div class="card">
+      <img src="images/monitravel.png" alt="MONITRAVEL">
       <h3>MONITRAVEL</h3>
       <p>Professional transportation services: safe, reliable, and comfortable.</p>
       <ul>
