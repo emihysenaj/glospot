@@ -6,6 +6,7 @@
   <title>Hotels - GLOSPOT</title>
   <link rel="stylesheet" href="style.css">
   <style>
+    /* ===== Card Container ===== */
     .card-container {
       display: flex;
       flex-wrap: nowrap;
@@ -135,21 +136,6 @@
   <h2>Our Recommended Hotels</h2>
   <div class="card-container" id="hotel-slider">
     <!-- Initial 3 hotels -->
-    <div class="card" data-hotel="Laid Hotel">
-      <img src="images/laidhotel.webp" alt="Laid Hotel">
-      <h3>Laid Hotel</h3>
-      <p>Luxury stays near the beach with amazing sea views.</p>
-    </div>
-    <div class="card" data-hotel="Regina City Hotel">
-      <img src="images/reginacity.jpg" alt="Regina City Hotel">
-      <h3>Regina City Hotel</h3>
-      <p>The luxury you are looking to seek with multiple choices.</p>
-    </div>
-    <div class="card" data-hotel="Marina Bay Resort & Casino">
-      <img src="images/marinabay.webp" alt="Marina Bay Resort & Casino">
-      <h3>Marina Bay Resort & Casino</h3>
-      <p>A Jewel on the Albanian Riviera.</p>
-    </div>
   </div>
 </section>
 
@@ -162,7 +148,7 @@
     <option value="Laid Hotel">Laid Hotel</option>
     <option value="Regina City Hotel">Regina City Hotel</option>
     <option value="Marina Bay Resort & Casino">Marina Bay Resort & Casino</option>
-    <option value="Flamingo Hotel">Flamingo Hotel</option>
+    <option value="Flamingo">Flamingo</option>
   </select>
 
   <label for="name">Full Name:</label>
@@ -174,8 +160,11 @@
   <label for="phone">Phone:</label>
   <input type="text" id="phone" placeholder="Your Phone Number" required>
 
-  <label for="people">Number of People:</label>
-  <input type="number" id="people" placeholder="Number of Guests" min="1" required>
+  <label for="adults">Number of Adults:</label>
+  <input type="number" id="adults" placeholder="Number of Adults" min="1" required>
+
+  <label for="kids">Number of Kids:</label>
+  <input type="number" id="kids" placeholder="Number of Kids" min="0" required>
 
   <label for="checkin">Check-In Date:</label>
   <input type="date" id="checkin" required>
@@ -202,7 +191,8 @@
   const nameInput = document.getElementById("name");
   const emailInput = document.getElementById("email");
   const phoneInput = document.getElementById("phone");
-  const peopleInput = document.getElementById("people");
+  const adultsInput = document.getElementById("adults");
+  const kidsInput = document.getElementById("kids");
   const checkinInput = document.getElementById("checkin");
   const checkoutInput = document.getElementById("checkout");
   const bookingMessage = document.getElementById("booking-message");
@@ -212,11 +202,12 @@
     const name = nameInput.value.trim();
     const email = emailInput.value.trim();
     const phone = phoneInput.value.trim();
-    const people = peopleInput.value;
+    const adults = adultsInput.value;
+    const kids = kidsInput.value;
     const checkin = checkinInput.value;
     const checkout = checkoutInput.value;
 
-    if (!hotel || !name || !email || !phone || !people || !checkin || !checkout) {
+    if (!hotel || !name || !email || !phone || !adults || !kids || !checkin || !checkout) {
       bookingMessage.textContent = "Please fill all fields.";
       bookingMessage.style.color = "red";
       return;
@@ -224,7 +215,7 @@
 
     try {
       await addDoc(collection(db, "reservations"), {
-        hotel, name, email, phone, people, checkin, checkout, timestamp: serverTimestamp()
+        hotel, name, email, phone, adults, kids, checkin, checkout, timestamp: serverTimestamp()
       });
 
       bookingMessage.textContent = "Reservation successful!";
@@ -234,7 +225,8 @@
       nameInput.value = "";
       emailInput.value = "";
       phoneInput.value = "";
-      peopleInput.value = "";
+      adultsInput.value = "";
+      kidsInput.value = "";
       checkinInput.value = "";
       checkoutInput.value = "";
 
@@ -245,46 +237,18 @@
     }
   });
 
-  // Click hotel card selects it in form
-  document.querySelectorAll(".card").forEach(card => {
-    card.addEventListener("click", () => {
-      hotelSelect.value = card.getAttribute("data-hotel");
-      window.scrollTo({ top: document.querySelector(".booking-form").offsetTop - 20, behavior: "smooth" });
-    });
-  });
-
   // Hotel slideshow functionality
   const hotels = [
-    {
-      name: "Laid Hotel",
-      img: "images/laidhotel.webp",
-      desc: "Luxury stays near the beach with amazing sea views."
-    },
-    {
-      name: "Regina City Hotel",
-      img: "images/reginacity.jpg",
-      desc: "The luxury you are looking to seek with multiple choices."
-    },
-    {
-      name: "Marina Bay Resort & Casino",
-      img: "images/marinabay.webp",
-      desc: "A Jewel on the Albanian Riviera."
-    },
-    {
-      name: "Flamingo Hotel",
-      img: "images/flamingohotel.jpg",
-      desc: "A modern hotel with exquisite rooms and pool."
-    }
+    { name: "Laid Hotel", img: "images/laidhotel.webp", desc: "Luxury stays near the beach with amazing sea views." },
+    { name: "Regina City Hotel", img: "images/reginacity.jpg", desc: "The luxury you are looking to seek with multiple choices." },
+    { name: "Marina Bay Resort & Casino", img: "images/marinabay.webp", desc: "A Jewel on the Albanian Riviera." },
+    { name: "Flamingo", img: "images/flamingo.jpg", desc: "A modern hotel with exquisite rooms and pool." }
   ];
 
   const container = document.getElementById("hotel-slider");
   let index = 0;
 
-  setInterval(() => {
-    // Rotate hotels array
-    index = (index + 1) % hotels.length;
-
-    // Show 3 hotels at a time
+  function renderHotels() {
     container.innerHTML = "";
     for (let i = 0; i < 3; i++) {
       const h = hotels[(index + i) % hotels.length];
@@ -298,13 +262,18 @@
       `;
       container.appendChild(card);
 
-      // click selects hotel in booking
       card.addEventListener("click", () => {
         hotelSelect.value = h.name;
         window.scrollTo({ top: document.querySelector(".booking-form").offsetTop - 20, behavior: "smooth" });
       });
     }
-  }, 5000); // rotate every 5 seconds
+  }
+
+  renderHotels();
+  setInterval(() => {
+    index = (index + 1) % hotels.length;
+    renderHotels();
+  }, 5000);
 </script>
 <script type="module" src="auth.js"></script>
 </body>
