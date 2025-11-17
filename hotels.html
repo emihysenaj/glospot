@@ -8,10 +8,12 @@
   <style>
     .card-container {
       display: flex;
-      flex-wrap: wrap;
+      flex-wrap: nowrap;
       justify-content: center;
       gap: 30px;
       padding: 40px 20px;
+      overflow: hidden;
+      position: relative;
     }
 
     .card {
@@ -21,11 +23,9 @@
       text-align: center;
       width: 220px;
       box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-      transition: transform 0.3s, box-shadow 0.3s;
+      transition: transform 0.5s, opacity 0.5s;
       cursor: pointer;
-      text-decoration: none;
-      color: inherit;
-      display: block;
+      flex-shrink: 0;
     }
 
     .card img {
@@ -105,6 +105,12 @@
       margin-top: 15px;
       color: green;
     }
+
+    @media (max-width: 768px) {
+      .card-container {
+        flex-wrap: wrap;
+      }
+    }
   </style>
 </head>
 <body>
@@ -127,7 +133,8 @@
 
 <section id="hotels">
   <h2>Our Recommended Hotels</h2>
-  <div class="card-container">
+  <div class="card-container" id="hotel-slider">
+    <!-- Initial 3 hotels -->
     <div class="card" data-hotel="Laid Hotel">
       <img src="images/laidhotel.webp" alt="Laid Hotel">
       <h3>Laid Hotel</h3>
@@ -155,6 +162,7 @@
     <option value="Laid Hotel">Laid Hotel</option>
     <option value="Regina City Hotel">Regina City Hotel</option>
     <option value="Marina Bay Resort & Casino">Marina Bay Resort & Casino</option>
+    <option value="Flamingo Hotel">Flamingo Hotel</option>
   </select>
 
   <label for="name">Full Name:</label>
@@ -186,9 +194,9 @@
 <script type="module" src="firebase-config.js"></script>
 <script type="module">
   import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-firestore.js";
-
   const db = getFirestore();
 
+  // Booking functionality
   const bookBtn = document.getElementById("book-btn");
   const hotelSelect = document.getElementById("hotel-select");
   const nameInput = document.getElementById("name");
@@ -216,14 +224,7 @@
 
     try {
       await addDoc(collection(db, "reservations"), {
-        hotel,
-        name,
-        email,
-        phone,
-        people,
-        checkin,
-        checkout,
-        timestamp: serverTimestamp()
+        hotel, name, email, phone, people, checkin, checkout, timestamp: serverTimestamp()
       });
 
       bookingMessage.textContent = "Reservation successful!";
@@ -244,16 +245,67 @@
     }
   });
 
-  // Click on hotel card selects it in form
+  // Click hotel card selects it in form
   document.querySelectorAll(".card").forEach(card => {
     card.addEventListener("click", () => {
-      const hotelName = card.getAttribute("data-hotel");
-      hotelSelect.value = hotelName;
+      hotelSelect.value = card.getAttribute("data-hotel");
       window.scrollTo({ top: document.querySelector(".booking-form").offsetTop - 20, behavior: "smooth" });
     });
   });
-</script>
 
+  // Hotel slideshow functionality
+  const hotels = [
+    {
+      name: "Laid Hotel",
+      img: "images/laidhotel.webp",
+      desc: "Luxury stays near the beach with amazing sea views."
+    },
+    {
+      name: "Regina City Hotel",
+      img: "images/reginacity.jpg",
+      desc: "The luxury you are looking to seek with multiple choices."
+    },
+    {
+      name: "Marina Bay Resort & Casino",
+      img: "images/marinabay.webp",
+      desc: "A Jewel on the Albanian Riviera."
+    },
+    {
+      name: "Flamingo Hotel",
+      img: "images/flamingohotel.jpg",
+      desc: "A modern hotel with exquisite rooms and pool."
+    }
+  ];
+
+  const container = document.getElementById("hotel-slider");
+  let index = 0;
+
+  setInterval(() => {
+    // Rotate hotels array
+    index = (index + 1) % hotels.length;
+
+    // Show 3 hotels at a time
+    container.innerHTML = "";
+    for (let i = 0; i < 3; i++) {
+      const h = hotels[(index + i) % hotels.length];
+      const card = document.createElement("div");
+      card.className = "card";
+      card.setAttribute("data-hotel", h.name);
+      card.innerHTML = `
+        <img src="${h.img}" alt="${h.name}">
+        <h3>${h.name}</h3>
+        <p>${h.desc}</p>
+      `;
+      container.appendChild(card);
+
+      // click selects hotel in booking
+      card.addEventListener("click", () => {
+        hotelSelect.value = h.name;
+        window.scrollTo({ top: document.querySelector(".booking-form").offsetTop - 20, behavior: "smooth" });
+      });
+    }
+  }, 5000); // rotate every 5 seconds
+</script>
 <script type="module" src="auth.js"></script>
 </body>
 </html>
