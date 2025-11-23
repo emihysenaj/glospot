@@ -1,140 +1,103 @@
-import { auth } from './firebase-config.js';
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-app.js";
 import {
+  getAuth,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
-  sendPasswordResetEmail,
-  onAuthStateChanged,
   signOut,
+  onAuthStateChanged,
   updateProfile
 } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-auth.js";
+import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-firestore.js";
+
+// Firebase app is initialized in firebase-config.js
+const auth = getAuth();
+const db = getFirestore();
 
 // Elements
-const nav = document.getElementById("main-nav");
-const logoutBtn = document.getElementById("logout-btn");
-const signinLink = document.getElementById("signin-link");
-const signupLink = document.getElementById("signup-link");
-
-// Helper to show messages in-page
-function showMessage(message, color = "green", duration = 3000) {
-  let messageDiv = document.getElementById("auth-message");
-  if (!messageDiv) {
-    messageDiv = document.createElement("div");
-    messageDiv.id = "auth-message";
-    messageDiv.style.textAlign = "center";
-    messageDiv.style.margin = "10px";
-    messageDiv.style.fontWeight = "bold";
-    document.body.insertBefore(messageDiv, document.body.firstChild);
-  }
-  messageDiv.textContent = message;
-  messageDiv.style.color = color;
-  setTimeout(() => {
-    messageDiv.textContent = "";
-  }, duration);
-}
-
-// Update nav based on auth state
-onAuthStateChanged(auth, (user) => {
-  const welcomeSpan = document.getElementById("user-welcome");
-
-  if(user){
-    if(!welcomeSpan){
-      const span = document.createElement("span");
-      span.id = "user-welcome";
-      span.textContent = user.displayName ? `👋 Welcome, ${user.displayName}` : `👋 Welcome, ${user.email}`;
-      span.style.color = "white";
-      span.style.fontWeight = "bold";
-      span.style.marginRight = "10px";
-      nav.insertBefore(span, nav.firstChild);
-    }
-    if(logoutBtn) logoutBtn.style.display="inline-block";
-    if(signinLink) signinLink.style.display="none";
-    if(signupLink) signupLink.style.display="none";
-  } else {
-    if(welcomeSpan) welcomeSpan.remove();
-    if(logoutBtn) logoutBtn.style.display="none";
-    if(signinLink) signinLink.style.display="inline-block";
-    if(signupLink) signupLink.style.display="inline-block";
-  }
-});
-
-// Logout
-if(logoutBtn){
-  logoutBtn.addEventListener("click", async () => {
-    await signOut(auth);
-    showMessage("Logged out successfully!");
-    window.location.reload();
-  });
-}
-
-// Sign Up
 const signupForm = document.getElementById("signup-form");
-if(signupForm){
+const signinForm = document.getElementById("signin-form");
+const logoutBtn = document.getElementById("logout-btn");
+const authMessage = document.getElementById("auth-message");
+const signupLink = document.getElementById("signup-link");
+const signinLink = document.getElementById("signin-link");
+
+// --- SIGN UP ---
+if (signupForm) {
   signupForm.addEventListener("submit", async (e) => {
     e.preventDefault();
     const name = document.getElementById("su-name").value.trim();
     const email = document.getElementById("su-email").value.trim();
-    const password = document.getElementById("su-password").value.trim();
+    const password = document.getElementById("su-password").value;
 
-    if(!name || !email || !password){
-      showMessage("Please fill all fields.", "red");
-      return;
-    }
+    if (!name || !email || !password) return;
 
-    try{
+    try {
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-      await updateProfile(userCredential.user, { displayName: name });
-      showMessage("Account created successfully! You can now sign in.");
-      setTimeout(() => {
-        window.location.href = "signin.html";
-      }, 2000);
-    } catch(error){
-      showMessage(error.message, "red");
+      const user = userCredential.user;
+
+      // Update display name
+      await updateProfile(user, { displayName: name });
+
+      // Save extra info in Firestore
+      await setDoc(doc(db, "users", user.uid), {
+        name,
+        email,
+        createdAt: new Date()
+      });
+
+      authMessage.style.color = "green";
+      authMessage.textContent = "Account created successfully!";
+      signupForm.reset();
+      window.location.href = "signin.html"; // redirect to signin
+    } catch (error) {
+      authMessage.style.color = "red";
+      authMessage.textContent = error.message;
     }
   });
 }
 
-// Sign In
-const signinForm = document.getElementById("signin-form");
-if(signinForm){
+// --- SIGN IN ---
+if (signinForm) {
   signinForm.addEventListener("submit", async (e) => {
     e.preventDefault();
     const email = document.getElementById("si-email").value.trim();
-    const password = document.getElementById("si-password").value.trim();
+    const password = document.getElementById("si-password").value;
 
-    try{
+    if (!email || !password) return;
+
+    try {
       await signInWithEmailAndPassword(auth, email, password);
-      showMessage("Welcome back!");
-      setTimeout(() => {
-        window.location.href = "index.html";
-      }, 1500);
-    } catch(error){
-      showMessage(error.message, "red");
+      authMessage.style.color = "green";
+      authMessage.textContent = "Signed in successfully!";
+      signinForm.reset();
+      window.location.href = "index.html"; // redirect after login
+    } catch (error) {
+      authMessage.style.color = "red";
+      authMessage.textContent = error.message;
     }
   });
 }
 
-// Forgot Password
-const forgotForm = document.getElementById("forgot-form");
-if(forgotForm){
-  forgotForm.addEventListener("submit", async (e) => {
-    e.preventDefault();
-    const email = document.getElementById("fp-email").value.trim();
-    if(!email){
-      showMessage("Please enter your email.", "red");
-      return;
-    }
-    try{
-      await sendPasswordResetEmail(auth, email);
-      showMessage("Password reset email sent!");
-    } catch(error){
-      showMessage(error.message, "red");
+// --- LOGOUT ---
+if (logoutBtn) {
+  logoutBtn.addEventListener("click", async () => {
+    try {
+      await signOut(auth);
+    } catch (error) {
+      console.error(error);
     }
   });
 }
 
-// Redirect if logged in on signup/signin pages
+// --- AUTH STATE LISTENER ---
 onAuthStateChanged(auth, (user) => {
-  if(user && (document.title.includes("Sign Up") || document.title.includes("Sign In"))){
-    window.location.href = "index.html";
+  if (user) {
+    logoutBtn.style.display = "inline-block";
+    signinLink.style.display = "none";
+    signupLink.style.display = "none";
+  } else {
+    logoutBtn.style.display = "none";
+    signinLink.style.display = "inline-block";
+    signupLink.style.display = "inline-block";
   }
 });
