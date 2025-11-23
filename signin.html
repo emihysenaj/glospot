@@ -6,16 +6,23 @@
 <title>Sign In - GLOSPOT</title>
 <link rel="stylesheet" href="style.css">
 <style>
-.form-section{max-width:400px;margin:40px auto;padding:30px;background-color:white;border-radius:15px;box-shadow:0 5px 15px rgba(0,0,0,0.1);}
-.form-section h2{text-align:center;color:#004aad;margin-bottom:20px;}
-.form-section label{display:block;margin-bottom:5px;font-weight:bold;color:#004aad;}
-.form-section input{width:100%;padding:8px;margin-bottom:15px;border-radius:5px;border:1px solid #ccc;}
-.form-section button{width:100%;padding:10px;background-color:#ffd700;border:none;border-radius:5px;font-weight:bold;cursor:pointer;transition:transform 0.3s, background-color 0.3s;}
-.form-section button:hover{transform:scale(1.05);background-color:#e6c200;}
-#auth-message{text-align:center;font-weight:bold;margin-bottom:15px;color:red;}
-.form-section p{text-align:center;}
-.form-section a{color:#004aad;font-weight:bold;text-decoration:none;}
-.form-section a:hover{text-decoration:underline;}
+.form-section {
+  max-width: 400px;
+  margin: 40px auto;
+  padding: 30px;
+  background-color: white;
+  border-radius: 15px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+.form-section h2 { text-align:center; color:#004aad; margin-bottom:20px; }
+.form-section label { display:block; margin-bottom:5px; font-weight:bold; color:#004aad; }
+.form-section input { width:100%; padding:8px; margin-bottom:15px; border-radius:5px; border:1px solid #ccc; }
+.form-section button { width:100%; padding:10px; background-color:#ffd700; border:none; border-radius:5px; font-weight:bold; cursor:pointer; transition: transform 0.3s, background-color 0.3s; }
+.form-section button:hover { transform:scale(1.05); background-color:#e6c200; }
+#auth-message { text-align:center; font-weight:bold; margin-bottom:15px; color:red; }
+.form-section p { text-align:center; }
+.form-section a { color:#004aad; font-weight:bold; text-decoration:none; }
+.form-section a:hover { text-decoration:underline; }
 </style>
 </head>
 <body>
@@ -23,26 +30,31 @@
 <div id="auth-message"></div>
 
 <header>
-<div class="logo-container"><img src="images/glospot-logo.png" alt="GLOSPOT Logo" class="logo"><h1>GLOSPOT</h1></div>
-<nav id="main-nav">
-<a href="index.html">Home</a>
-<a href="hotels.html">Hotels</a>
-<a href="guides.html">Guides</a>
-<a href="transportation.html">Transportation</a>
-<a href="signup.html" id="signup-link">Sign Up</a>
-<a href="signin.html" class="active" id="signin-link">Sign In</a>
-<button id="logout-btn" style="display:none;">Log Out</button>
-</nav>
+  <div class="logo-container">
+    <img src="images/glospot-logo.png" alt="GLOSPOT Logo" class="logo">
+    <h1>GLOSPOT</h1>
+  </div>
+  <nav id="main-nav">
+    <a href="index.html">Home</a>
+    <a href="hotels.html">Hotels</a>
+    <a href="guides.html">Guides</a>
+    <a href="transportation.html">Transportation</a>
+    <a href="signup.html" id="signup-link">Sign Up</a>
+    <a href="signin.html" class="active" id="signin-link">Sign In</a>
+    <button id="logout-btn" style="display:none;">Log Out</button>
+  </nav>
 </header>
 
 <section class="form-section">
 <h2>Sign In</h2>
 <form id="signin-form">
-<label for="si-email">Email:</label>
-<input type="email" id="si-email" placeholder="you@example.com" required>
-<label for="si-password">Password:</label>
-<input type="password" id="si-password" placeholder="Enter Password" required>
-<button type="submit">Sign In</button>
+  <label for="si-email">Email:</label>
+  <input type="email" id="si-email" placeholder="you@example.com" required>
+
+  <label for="si-password">Password:</label>
+  <input type="password" id="si-password" placeholder="Enter Password" required>
+
+  <button type="submit">Sign In</button>
 </form>
 <p>Forgot password? <a href="forgot-password.html">Reset Here</a></p>
 <p>Don't have an account? <a href="signup.html">Sign Up</a></p>
@@ -51,36 +63,6 @@
 <footer><p>© 2025 GLOSPOT</p></footer>
 
 <script type="module" src="firebase-config.js"></script>
-<script type="module">
-import { auth } from './firebase-config.js';
-import { signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-auth.js";
-
-const signinForm = document.getElementById("signin-form");
-const authMessage = document.getElementById("auth-message");
-
-signinForm.addEventListener("submit", async (e) => {
-  e.preventDefault();
-  const email = document.getElementById("si-email").value.trim();
-  const password = document.getElementById("si-password").value;
-
-  if (!email || !password) return;
-
-  try {
-    await signInWithEmailAndPassword(auth, email, password);
-    authMessage.style.color = "green";
-    authMessage.textContent = "Signed in successfully!";
-    signinForm.reset();
-    setTimeout(()=>{window.location.href="index.html";}, 1000);
-  } catch (error) {
-    authMessage.style.color = "red";
-    switch(error.code){
-      case "auth/wrong-password": authMessage.textContent = "Incorrect password."; break;
-      case "auth/user-not-found": authMessage.textContent = "No account found with this email."; break;
-      case "auth/invalid-email": authMessage.textContent = "Invalid email address."; break;
-      default: authMessage.textContent = error.message;
-    }
-  }
-});
-</script>
+<script type="module" src="auth.js"></script>
 </body>
 </html>
