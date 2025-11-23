@@ -12,7 +12,9 @@ export const translations = {
     signinButton: "Sign In",
     contactUs: "Contact Us",
     email: "Email: glospoot@gmail.com",
-    phone: "Phone: 355-69-123-4567"
+    phone: "Phone: 355-69-123-4567",
+    guidesTitle: "Our Expert Guides",
+    guidesDescription: "Discover local guides who make your trips unforgettable."
   },
   it: {
     home: "Home",
@@ -27,7 +29,9 @@ export const translations = {
     signinButton: "Accedi",
     contactUs: "Contattaci",
     email: "Email: glospoot@gmail.com",
-    phone: "Telefono: 355-69-123-4567"
+    phone: "Telefono: 355-69-123-4567",
+    guidesTitle: "I nostri esperti guide",
+    guidesDescription: "Scopri le guide locali che rendono i tuoi viaggi indimenticabili."
   },
   de: {
     home: "Startseite",
@@ -42,6 +46,8 @@ export const translations = {
     signinButton: "Anmelden",
     contactUs: "Kontakt",
     email: "Email: glospoot@gmail.com",
-    phone: "Telefon: 355-69-123-4567"
+    phone: "Telefon: 355-69-123-4567",
+    guidesTitle: "Unsere Expertenführer",
+    guidesDescription: "Entdecken Sie lokale Guides, die Ihre Reisen unvergesslich machen."
   }
 };
