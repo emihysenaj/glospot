@@ -5,16 +5,36 @@ import {
   signOut,
   onAuthStateChanged,
   updateProfile
-} from "https://www.gstatic.com/firebasejs/12.5.0/firebase-auth.js";
-import { doc, setDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-firestore.js";
+} from "https://www.gstatic.com/firebasejs/12.6.0/firebase-auth.js";
+import { setDoc, doc } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-firestore.js";
 
-// --- Elements ---
+// Elements
 const signupForm = document.getElementById("signup-form");
 const signinForm = document.getElementById("signin-form");
 const logoutBtn = document.getElementById("logout-btn");
 const authMessage = document.getElementById("auth-message");
 const signupLink = document.getElementById("signup-link");
 const signinLink = document.getElementById("signin-link");
+
+// --- Helper function to display friendly Firebase error messages ---
+function getFriendlyErrorMessage(errorCode) {
+  switch(errorCode) {
+    case 'auth/email-already-in-use':
+      return "This email is already registered. Please use another email or sign in.";
+    case 'auth/invalid-email':
+      return "Invalid email address format.";
+    case 'auth/weak-password':
+      return "Password should be at least 6 characters.";
+    case 'auth/user-not-found':
+      return "No account found with this email.";
+    case 'auth/wrong-password':
+      return "Incorrect password. Please try again.";
+    case 'auth/too-many-requests':
+      return "Too many attempts. Please try again later.";
+    default:
+      return "An error occurred. Please try again.";
+  }
+}
 
 // --- SIGN UP ---
 if (signupForm) {
@@ -24,7 +44,11 @@ if (signupForm) {
     const email = document.getElementById("su-email").value.trim();
     const password = document.getElementById("su-password").value;
 
-    if (!name || !email || !password) return;
+    if (!name || !email || !password) {
+      authMessage.style.color = "red";
+      authMessage.textContent = "Please fill in all fields.";
+      return;
+    }
 
     try {
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
@@ -33,37 +57,22 @@ if (signupForm) {
       // Update display name
       await updateProfile(user, { displayName: name });
 
-      // Save extra info in Firestore
+      // Save user info in Firestore
       await setDoc(doc(db, "users", user.uid), {
         name,
         email,
-        createdAt: serverTimestamp()
+        createdAt: new Date()
       });
 
       authMessage.style.color = "green";
-      authMessage.textContent = "Account created successfully!";
+      authMessage.textContent = "Account created successfully! Redirecting...";
       signupForm.reset();
 
-      // Redirect to sign-in
-      setTimeout(() => {
-        window.location.href = "signin.html";
-      }, 1000);
+      // Redirect to sign-in page after 1.5s
+      setTimeout(() => window.location.href = "signin.html", 1500);
     } catch (error) {
-      console.error(error);
       authMessage.style.color = "red";
-      switch (error.code) {
-        case "auth/email-already-in-use":
-          authMessage.textContent = "This email is already in use.";
-          break;
-        case "auth/invalid-email":
-          authMessage.textContent = "Invalid email address.";
-          break;
-        case "auth/weak-password":
-          authMessage.textContent = "Password should be at least 6 characters.";
-          break;
-        default:
-          authMessage.textContent = error.message;
-      }
+      authMessage.textContent = getFriendlyErrorMessage(error.code);
     }
   });
 }
@@ -75,34 +84,23 @@ if (signinForm) {
     const email = document.getElementById("si-email").value.trim();
     const password = document.getElementById("si-password").value;
 
-    if (!email || !password) return;
+    if (!email || !password) {
+      authMessage.style.color = "red";
+      authMessage.textContent = "Please enter both email and password.";
+      return;
+    }
 
     try {
       await signInWithEmailAndPassword(auth, email, password);
       authMessage.style.color = "green";
-      authMessage.textContent = "Signed in successfully!";
+      authMessage.textContent = "Signed in successfully! Redirecting...";
       signinForm.reset();
 
-      // Redirect to home
-      setTimeout(() => {
-        window.location.href = "index.html";
-      }, 1000);
+      // Redirect to home page after 1.5s
+      setTimeout(() => window.location.href = "index.html", 1500);
     } catch (error) {
-      console.error(error);
       authMessage.style.color = "red";
-      switch (error.code) {
-        case "auth/wrong-password":
-          authMessage.textContent = "Incorrect password.";
-          break;
-        case "auth/user-not-found":
-          authMessage.textContent = "No account found with this email.";
-          break;
-        case "auth/invalid-email":
-          authMessage.textContent = "Invalid email format.";
-          break;
-        default:
-          authMessage.textContent = error.message;
-      }
+      authMessage.textContent = getFriendlyErrorMessage(error.code);
     }
   });
 }
@@ -113,7 +111,7 @@ if (logoutBtn) {
     try {
       await signOut(auth);
     } catch (error) {
-      console.error(error);
+      console.error("Logout error:", error);
     }
   });
 }
