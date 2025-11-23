@@ -6,72 +6,26 @@
 <title>Transportation - GLOSPOT</title>
 <link rel="stylesheet" href="style.css">
 <style>
-  .card-container {
-    display: flex;
-    justify-content: center;
-    gap: 30px;
-    padding: 40px 20px;
-    overflow: hidden;
-    position: relative;
-  }
-  .card {
-    background-color: white;
-    border-radius: 15px;
-    padding: 20px;
-    text-align: center;
-    width: 220px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    transition: transform 0.5s, opacity 0.5s;
-    cursor: pointer;
-    flex-shrink: 0;
-    opacity: 0;
-  }
-  .card.active { opacity: 1; }
-  .card img {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    object-fit: cover;
-    margin: 0 auto 15px auto;
-    display: block;
-  }
-  .card h3 { font-size: 1.2rem; color: #004aad; margin-bottom: 10px; }
-  .card p { font-size: 1rem; color: #333; }
-  .card:hover { transform: translateY(-5px); box-shadow: 0 8px 20px rgba(0,0,0,0.2); }
-
-  section#hero-transport {
-    display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;
-    padding: 60px 20px; background-color: #004aad; color: white;
-  }
-  section#hero-transport h2 { font-size: 2.5rem; margin-bottom: 10px; }
-  section#hero-transport p { font-size: 1.2rem; max-width: 700px; margin-bottom: 20px; }
-  section#hero-transport .buttons button {
-    margin: 10px; padding: 10px 20px; font-weight: bold; border-radius: 5px; border: none; cursor: pointer;
-    background-color: #ffd700; color: black; transition: transform 0.3s, background-color 0.3s;
-  }
-  section#hero-transport .buttons button:hover { transform: scale(1.1); background-color: #e6c200; }
-
-  .booking-form {
-    max-width: 500px;
-    margin: 40px auto;
-    padding: 30px;
-    background-color: white;
-    border-radius: 15px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-  }
-  .booking-form h3 { text-align: center; margin-bottom: 20px; color: #004aad; }
-  .booking-form label { display: block; margin-bottom: 5px; font-weight: bold; color: #004aad; }
-  .booking-form input, .booking-form select {
-    width: 100%; padding: 8px; margin-bottom: 15px; border-radius: 5px; border: 1px solid #ccc;
-  }
-  .booking-form button {
-    width: 100%; padding: 10px; background-color: #ffd700; border: none; border-radius: 5px; font-weight: bold; cursor: pointer;
-    transition: transform 0.3s, background-color 0.3s;
-  }
-  .booking-form button:hover { transform: scale(1.05); background-color: #e6c200; }
-  #booking-message { text-align: center; font-weight: bold; margin-top: 15px; color: green; }
-
-  @media (max-width: 768px) { .card-container { flex-wrap: wrap; } }
+.card-container{display:flex;justify-content:center;gap:30px;padding:40px 20px;overflow:hidden;position:relative;}
+.card{background-color:white;border-radius:15px;padding:20px;text-align:center;width:220px;box-shadow:0 5px 15px rgba(0,0,0,0.1);transition:transform 0.5s,opacity 0.5s;cursor:pointer;flex-shrink:0;opacity:0;}
+.card.active{opacity:1;}
+.card img{width:100px;height:100px;border-radius:50%;object-fit:cover;margin:0 auto 15px auto;display:block;}
+.card h3{font-size:1.2rem;color:#004aad;margin-bottom:10px;}
+.card p{font-size:1rem;color:#333;}
+.card:hover{transform:translateY(-5px);box-shadow:0 8px 20px rgba(0,0,0,0.2);}
+section#hero-transport{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:60px 20px;background-color:#004aad;color:white;}
+section#hero-transport h2{font-size:2.5rem;margin-bottom:10px;}
+section#hero-transport p{font-size:1.2rem;max-width:700px;margin-bottom:20px;}
+section#hero-transport .buttons button{margin:10px;padding:10px 20px;font-weight:bold;border-radius:5px;border:none;cursor:pointer;background-color:#ffd700;color:black;transition:transform 0.3s,background-color 0.3s;}
+section#hero-transport .buttons button:hover{transform:scale(1.1);background-color:#e6c200;}
+.booking-form{max-width:500px;margin:40px auto;padding:30px;background-color:white;border-radius:15px;box-shadow:0 5px 15px rgba(0,0,0,0.1);}
+.booking-form h3{text-align:center;margin-bottom:20px;color:#004aad;}
+.booking-form label{display:block;margin-bottom:5px;font-weight:bold;color:#004aad;}
+.booking-form input,.booking-form select{width:100%;padding:8px;margin-bottom:15px;border-radius:5px;border:1px solid #ccc;}
+.booking-form button{width:100%;padding:10px;background-color:#ffd700;border:none;border-radius:5px;font-weight:bold;cursor:pointer;transition:transform 0.3s,background-color 0.3s;}
+.booking-form button:hover{transform:scale(1.05);background-color:#e6c200;}
+#booking-message{text-align:center;font-weight:bold;margin-top:15px;color:green;}
+@media(max-width:768px){.card-container{flex-wrap:wrap;}}
 </style>
 </head>
 <body>
@@ -90,63 +44,47 @@
     <a href="signin.html" id="signin-link">Sign In</a>
     <button id="logout-btn" style="display:none;">Log Out</button>
     <select id="language-selector">
-  <option value="en">English</option>
-  <option value="it">Italiano</option>
-  <option value="de">Deutsch</option>
-</select>
+      <option value="en">English</option>
+      <option value="it">Italiano</option>
+      <option value="de">Deutsch</option>
+    </select>
   </nav>
 </header>
 
 <section id="hero-transport">
-  <h2>Reliable Transportation for Your Adventures</h2>
-  <p>We partner with top transportation providers to ensure safe, comfortable, and timely travel for all your trips.</p>
-  <div class="buttons">
-    <button onclick="window.location.href='signup.html'">Book Now</button>
-    <button onclick="window.location.href='index.html#contact-us'">Contact Us</button>
-  </div>
+<h2>Reliable Transportation for Your Adventures</h2>
+<p>We partner with top transportation providers to ensure safe, comfortable, and timely travel for all your trips.</p>
+<div class="buttons">
+  <button onclick="window.location.href='signup.html'">Book Now</button>
+  <button onclick="window.location.href='index.html#contact-us'">Contact Us</button>
+</div>
 </section>
 
 <section id="transport-options">
-  <h2>Transportation Options</h2>
-  <div class="card-container" id="transport-slider"></div>
+<h2>Transportation Options</h2>
+<div class="card-container" id="transport-slider"></div>
 </section>
 
 <section class="booking-form">
-  <h3>Book Your Transportation</h3>
-
-  <label for="transport-select">Select Transportation:</label>
-  <select id="transport-select">
-    <option value="">-- Choose an Option --</option>
-    <option value="Bus Services">Bus Services</option>
-    <option value="Private Cars">Private Cars</option>
-    <option value="Taxi">Taxi</option>
-  </select>
-
-  <label for="name">Full Name:</label>
-  <input type="text" id="name" placeholder="Your Name" required>
-
-  <label for="email">Email:</label>
-  <input type="email" id="email" placeholder="you@example.com" required>
-
-  <label for="phone">Phone:</label>
-  <input type="text" id="phone" placeholder="Your Phone Number" required>
-
-  <label for="adults">Number of Adults:</label>
-  <input type="number" id="adults" placeholder="Number of Adults" min="1" required>
-
-  <label for="kids">Number of Kids:</label>
-  <input type="number" id="kids" placeholder="Number of Kids" min="0" required>
-
-  <label for="date">Travel Date:</label>
-  <input type="date" id="date" required>
-
-  <button id="book-btn">Book Now</button>
-  <div id="booking-message"></div>
+<h3>Book Your Transportation</h3>
+<label for="transport-select">Select Transportation:</label>
+<select id="transport-select">
+<option value="">-- Choose an Option --</option>
+<option value="Bus Services">Bus Services</option>
+<option value="Private Cars">Private Cars</option>
+<option value="Taxi">Taxi</option>
+</select>
+<label for="name">Full Name:</label><input type="text" id="name" placeholder="Your Name" required>
+<label for="email">Email:</label><input type="email" id="email" placeholder="you@example.com" required>
+<label for="phone">Phone:</label><input type="text" id="phone" placeholder="Your Phone Number" required>
+<label for="adults">Number of Adults:</label><input type="number" id="adults" placeholder="Number of Adults" min="1" required>
+<label for="kids">Number of Kids:</label><input type="number" id="kids" placeholder="Number of Kids" min="0" required>
+<label for="date">Travel Date:</label><input type="date" id="date" required>
+<button id="book-btn">Book Now</button>
+<div id="booking-message"></div>
 </section>
 
-<footer>
-  <p>© 2025 GLOSPOT</p>
-</footer>
+<footer><p>© 2025 GLOSPOT</p></footer>
 
 <script type="module" src="firebase-config.js"></script>
 <script type="module">
@@ -155,78 +93,32 @@ const db = getFirestore();
 
 // Booking
 const bookBtn = document.getElementById("book-btn");
-const transportSelect = document.getElementById("transport-select");
-const nameInput = document.getElementById("name");
-const emailInput = document.getElementById("email");
-const phoneInput = document.getElementById("phone");
-const adultsInput = document.getElementById("adults");
-const kidsInput = document.getElementById("kids");
-const dateInput = document.getElementById("date");
-const bookingMessage = document.getElementById("booking-message");
-
 bookBtn.addEventListener("click", async () => {
-  const transport = transportSelect.value;
-  const name = nameInput.value.trim();
-  const email = emailInput.value.trim();
-  const phone = phoneInput.value.trim();
-  const adults = adultsInput.value;
-  const kids = kidsInput.value;
-  const date = dateInput.value;
-
-  if (!transport || !name || !email || !phone || !adults || !kids || !date) {
-    bookingMessage.textContent = "Please fill all fields.";
-    bookingMessage.style.color = "red";
-    return;
-  }
-
-  try {
-    await addDoc(collection(db, "transport_bookings"), { transport, name, email, phone, adults, kids, date, timestamp: serverTimestamp() });
-    bookingMessage.textContent = "Booking successful!";
-    bookingMessage.style.color = "green";
-
-    transportSelect.value = ""; nameInput.value = ""; emailInput.value = ""; phoneInput.value = "";
-    adultsInput.value = ""; kidsInput.value = ""; dateInput.value = "";
-  } catch (error) {
-    console.error(error);
-    bookingMessage.textContent = "Failed to make booking.";
-    bookingMessage.style.color = "red";
-  }
+  const transport=document.getElementById("transport-select").value;
+  const name=document.getElementById("name").value.trim();
+  const email=document.getElementById("email").value.trim();
+  const phone=document.getElementById("phone").value.trim();
+  const adults=document.getElementById("adults").value;
+  const kids=document.getElementById("kids").value;
+  const date=document.getElementById("date").value;
+  const msg=document.getElementById("booking-message");
+  if(!transport||!name||!email||!phone||!adults||!kids||!date){msg.textContent="Please fill all fields.";msg.style.color="red";return;}
+  try{await addDoc(collection(db,"transport_bookings"),{transport,name,email,phone,adults,kids,date,timestamp:serverTimestamp()});msg.textContent="Booking successful!";msg.style.color="green";document.getElementById("transport-select").value="";document.getElementById("name").value="";document.getElementById("email").value="";document.getElementById("phone").value="";document.getElementById("adults").value="";document.getElementById("kids").value="";document.getElementById("date").value="";}catch(e){console.error(e);msg.textContent="Failed to make booking.";msg.style.color="red";}
 });
 
 // Slideshow
-const transports = [
-  { name: "Bus Services", img: "images/bus.jpeg", desc: "Comfortable intercity buses for all your travel needs." },
-  { name: "Private Cars", img: "images/car.jpg", desc: "Rent private cars for personal or group trips." },
-  { name: "Taxi", img: "images/taxi.webp", desc: "Reliable taxi services for city travel." }
-];
+const transports=[
+{name:"Bus Services",img:"images/bus.jpeg",desc:"Comfortable intercity buses for all your travel needs."},
+{name:"Private Cars",img:"images/car.jpg",desc:"Rent private cars for personal or group trips."},
+{name:"Taxi",img:"images/taxi.webp",desc:"Reliable taxi services for city travel."}];
 
-const container = document.getElementById("transport-slider");
-let index = 0;
-
-function renderTransports() {
-  container.innerHTML = "";
-  for (let i = 0; i < transports.length; i++) {
-    const t = transports[(index + i) % transports.length];
-    const card = document.createElement("div");
-    card.className = "card active";
-    card.innerHTML = `<img src="${t.img}" alt="${t.name}"><h3>${t.name}</h3><p>${t.desc}</p>`;
-    container.appendChild(card);
-    card.addEventListener("click", () => {
-      transportSelect.value = t.name;
-      window.scrollTo({ top: document.querySelector(".booking-form").offsetTop - 20, behavior: "smooth" });
-    });
-  }
-}
-
-// Initial render
+let index=0;
+const container=document.getElementById("transport-slider");
+function renderTransports(){container.innerHTML="";for(let i=0;i<transports.length;i++){const t=transports[(index+i)%transports.length];const card=document.createElement("div");card.className="card active";card.innerHTML=`<img src="${t.img}" alt="${t.name}"><h3>${t.name}</h3><p>${t.desc}</p>`;container.appendChild(card);card.addEventListener("click",()=>{document.getElementById("transport-select").value=t.name;window.scrollTo({top:document.querySelector(".booking-form").offsetTop-20,behavior:"smooth"});});}}
 renderTransports();
-
-// Cycle slideshow every 5 seconds
-setInterval(() => {
-  index = (index + 1) % transports.length;
-  renderTransports();
-}, 5000);
+setInterval(()=>{index=(index+1)%transports.length;renderTransports();},5000);
 </script>
 <script type="module" src="auth.js"></script>
+<script type="module" src="language.js"></script>
 </body>
 </html>
