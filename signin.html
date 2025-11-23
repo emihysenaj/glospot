@@ -51,7 +51,36 @@
 <footer><p>© 2025 GLOSPOT</p></footer>
 
 <script type="module" src="firebase-config.js"></script>
-<script type="module" src="auth.js"></script>
+<script type="module">
+import { auth } from './firebase-config.js';
+import { signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-auth.js";
 
+const signinForm = document.getElementById("signin-form");
+const authMessage = document.getElementById("auth-message");
+
+signinForm.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const email = document.getElementById("si-email").value.trim();
+  const password = document.getElementById("si-password").value;
+
+  if (!email || !password) return;
+
+  try {
+    await signInWithEmailAndPassword(auth, email, password);
+    authMessage.style.color = "green";
+    authMessage.textContent = "Signed in successfully!";
+    signinForm.reset();
+    setTimeout(()=>{window.location.href="index.html";}, 1000);
+  } catch (error) {
+    authMessage.style.color = "red";
+    switch(error.code){
+      case "auth/wrong-password": authMessage.textContent = "Incorrect password."; break;
+      case "auth/user-not-found": authMessage.textContent = "No account found with this email."; break;
+      case "auth/invalid-email": authMessage.textContent = "Invalid email address."; break;
+      default: authMessage.textContent = error.message;
+    }
+  }
+});
+</script>
 </body>
 </html>
