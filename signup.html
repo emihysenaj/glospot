@@ -6,23 +6,16 @@
 <title>Sign Up - GLOSPOT</title>
 <link rel="stylesheet" href="style.css">
 <style>
-.form-section {
-  max-width: 400px;
-  margin: 40px auto;
-  padding: 30px;
-  background-color: white;
-  border-radius: 15px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-}
-.form-section h2 { text-align:center; color:#004aad; margin-bottom:20px; }
-.form-section label { display:block; margin-bottom:5px; font-weight:bold; color:#004aad; }
-.form-section input { width:100%; padding:8px; margin-bottom:15px; border-radius:5px; border:1px solid #ccc; }
-.form-section button { width:100%; padding:10px; background-color:#ffd700; border:none; border-radius:5px; font-weight:bold; cursor:pointer; transition: transform 0.3s, background-color 0.3s; }
-.form-section button:hover { transform:scale(1.05); background-color:#e6c200; }
-#auth-message { text-align:center; font-weight:bold; margin-bottom:15px; color:red; }
-.form-section p { text-align:center; }
-.form-section a { color:#004aad; font-weight:bold; text-decoration:none; }
-.form-section a:hover { text-decoration:underline; }
+.form-section{max-width:400px;margin:40px auto;padding:30px;background-color:white;border-radius:15px;box-shadow:0 5px 15px rgba(0,0,0,0.1);}
+.form-section h2{text-align:center;color:#004aad;margin-bottom:20px;}
+.form-section label{display:block;margin-bottom:5px;font-weight:bold;color:#004aad;}
+.form-section input{width:100%;padding:8px;margin-bottom:15px;border-radius:5px;border:1px solid #ccc;}
+.form-section button{width:100%;padding:10px;background-color:#ffd700;border:none;border-radius:5px;font-weight:bold;cursor:pointer;transition:transform 0.3s, background-color 0.3s;}
+.form-section button:hover{transform:scale(1.05);background-color:#e6c200;}
+#auth-message{text-align:center;font-weight:bold;margin-bottom:15px;color:red;}
+.form-section p{text-align:center;}
+.form-section a{color:#004aad;font-weight:bold;text-decoration:none;}
+.form-section a:hover{text-decoration:underline;}
 </style>
 </head>
 <body>
@@ -46,20 +39,20 @@
 </header>
 
 <section class="form-section">
-<h2>Create Your Account</h2>
-<form id="signup-form">
-  <label for="su-name">Full Name:</label>
-  <input type="text" id="su-name" placeholder="Your Name" required>
+  <h2>Create Your Account</h2>
+  <form id="signup-form">
+    <label for="su-name">Full Name:</label>
+    <input type="text" id="su-name" placeholder="Your Name" required>
 
-  <label for="su-email">Email:</label>
-  <input type="email" id="su-email" placeholder="you@example.com" required>
+    <label for="su-email">Email:</label>
+    <input type="email" id="su-email" placeholder="you@example.com" required>
 
-  <label for="su-password">Password:</label>
-  <input type="password" id="su-password" placeholder="Enter Password" required>
+    <label for="su-password">Password:</label>
+    <input type="password" id="su-password" placeholder="Enter Password" required>
 
-  <button type="submit">Sign Up</button>
-</form>
-<p>Already have an account? <a href="signin.html">Sign In</a></p>
+    <button type="submit">Sign Up</button>
+  </form>
+  <p>Already have an account? <a href="signin.html">Sign In</a></p>
 </section>
 
 <footer><p>© 2025 GLOSPOT</p></footer>
