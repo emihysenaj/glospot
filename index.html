@@ -1,48 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>GLOSPOT - Home</title>
-  <link rel="stylesheet" href="style.css">
-  <style>
-    /* Slider specific styles */
-    .hero-image-container {
-      position: relative;
-      width: 100%;
-      max-width: 800px;
-      margin: 0 auto;
-      min-height: 400px;
-    }
-
-    .hero-image {
-      width: 100%;
-      height: auto;
-      border-radius: 10px;
-      object-fit: cover;
-      position: absolute;
-      top: 0;
-      left: 0;
-      opacity: 0;
-      transition: opacity 1s ease-in-out;
-    }
-
-    .hero-image.active {
-      opacity: 1;
-      position: relative;
-    }
-
-    .hero-content {
-      max-width: 600px;
-      color: #004aad;
-      text-align: center;
-      margin: 20px auto 0 auto;
-    }
-
-    .hero-content .buttons button {
-      margin: 0 10px;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GLOSPOT - Home</title>
+<link rel="stylesheet" href="style.css">
+<style>
+  .hero-image-container {
+    position: relative;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    min-height: 400px;
+  }
+  .hero-image {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+  }
+  .hero-image.active { opacity: 1; position: relative; }
+  .hero-content { max-width: 600px; color: #004aad; text-align: center; margin: 20px auto 0 auto; }
+  .hero-content .buttons button { margin: 0 10px; padding: 10px 20px; font-weight: bold; border-radius:5px; border:none; cursor:pointer; transition: transform 0.3s, background-color 0.3s; background-color: #ffd700; color:black; }
+  .hero-content .buttons button:hover { transform: scale(1.1); background-color: #e6c200; }
+  #contact-us { text-align:center; padding:40px 20px; background-color:#f2f2f2; }
+  #contact-us h2 { color:#004aad; font-weight:bold; font-size:2rem; margin-bottom:20px; }
+</style>
 </head>
 <body>
 
@@ -52,25 +40,23 @@
     <h1>GLOSPOT</h1>
   </div>
   <nav id="main-nav">
-  <a href="index.html" class="active">Home</a>
-  <a href="hotels.html">Hotels</a>
-  <a href="guides.html">Guides</a>
-  <a href="transportation.html">Transportation</a>
-  <a href="signup.html" id="signup-link">Sign Up</a>
-  <a href="signin.html" id="signin-link">Sign In</a>
-  <button id="logout-btn" style="display:none;">Log Out</button>
-  <select id="language-selector">
-  <option value="en">English</option>
-  <option value="it">Italiano</option>
-  <option value="de">Deutsch</option>
-</select>
-</nav>
+    <a href="index.html" class="active">Home</a>
+    <a href="hotels.html">Hotels</a>
+    <a href="guides.html">Guides</a>
+    <a href="transportation.html">Transportation</a>
+    <a href="signup.html" id="signup-link">Sign Up</a>
+    <a href="signin.html" id="signin-link">Sign In</a>
+    <button id="logout-btn" style="display:none;">Log Out</button>
+    <select id="language-selector">
+      <option value="en">English</option>
+      <option value="it">Italiano</option>
+      <option value="de">Deutsch</option>
+    </select>
+  </nav>
 </header>
 
 <section id="home" class="hero">
-  <div class="hero-image-container">
-    <!-- Images will be injected dynamically -->
-  </div>
+  <div class="hero-image-container"></div>
   <div class="hero-content">
     <h2>Welcome to Your Next Adventure!</h2>
     <p>We organize amazing trips all over the world — beach holidays, mountain hikes, and city tours.</p>
@@ -93,39 +79,15 @@
 
 <script type="module" src="firebase-config.js"></script>
 <script type="module" src="auth.js"></script>
-<script type="module">
-  // Hero slider
-  const heroImages = [
-    'images/beach.jpg',
-    'images/beach2.jpg',
-    'images/beach3.jpg',
-    'images/beach4.jpg',
-    'images/beach5.jpg',
-    'images/beach6.jpg',
-    'images/beach7.jpg',
-    'images/beach8.jpg'
-  ];
-
-  const heroContainer = document.querySelector('.hero-image-container');
-
-  heroImages.forEach((src, index) => {
-    const img = document.createElement('img');
-    img.src = src;
-    img.classList.add('hero-image');
-    if (index === 0) img.classList.add('active');
-    heroContainer.appendChild(img);
-  });
-
-  let currentIndex = 0;
-  const totalImages = heroImages.length;
-
-  setInterval(() => {
-    const images = document.querySelectorAll('.hero-image');
-    images[currentIndex].classList.remove('active');
-    currentIndex = (currentIndex + 1) % totalImages;
-    images[currentIndex].classList.add('active');
-  }, 5000);
-</script>
 <script type="module" src="language.js"></script>
+<script>
+  const heroImages = ['images/beach.jpg','images/beach2.jpg','images/beach3.jpg','images/beach4.jpg','images/beach5.jpg','images/beach6.jpg','images/beach7.jpg','images/beach8.jpg'];
+  const heroContainer = document.querySelector('.hero-image-container');
+  heroImages.forEach((src,index)=>{
+    const img=document.createElement('img'); img.src=src; img.classList.add('hero-image'); if(index===0) img.classList.add('active'); heroContainer.appendChild(img);
+  });
+  let currentIndex=0; const totalImages=heroImages.length;
+  setInterval(()=>{const images=document.querySelectorAll('.hero-image'); images[currentIndex].classList.remove('active'); currentIndex=(currentIndex+1)%totalImages; images[currentIndex].classList.add('active');},5000);
+</script>
 </body>
 </html>
