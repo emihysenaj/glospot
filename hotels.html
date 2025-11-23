@@ -6,60 +6,21 @@
 <title>Hotels - GLOSPOT</title>
 <link rel="stylesheet" href="style.css">
 <style>
-  .card-container {
-    display: flex;
-    justify-content: center;
-    gap: 30px;
-    padding: 40px 20px;
-    overflow: hidden;
-    position: relative;
-  }
-  .card {
-    background-color: white;
-    border-radius: 15px;
-    padding: 20px;
-    text-align: center;
-    width: 220px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    transition: transform 0.5s, opacity 0.5s;
-    cursor: pointer;
-    flex-shrink: 0;
-    opacity: 0;
-  }
-  .card.active {
-    opacity: 1;
-  }
-  .card img {
-    width: 100%;
-    height: 150px;
-    border-radius: 10px;
-    object-fit: cover;
-    margin-bottom: 15px;
-  }
-  .card h3 { font-size: 1.2rem; color: #004aad; margin-bottom: 10px; }
-  .card p { font-size: 1rem; color: #333; }
-  .card:hover { transform: translateY(-5px); box-shadow: 0 8px 20px rgba(0,0,0,0.2); }
-
-  .booking-form {
-    max-width: 500px;
-    margin: 40px auto;
-    padding: 30px;
-    background-color: white;
-    border-radius: 15px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-  }
-  .booking-form h3 { text-align: center; margin-bottom: 20px; color: #004aad; }
-  .booking-form label { display: block; margin-bottom: 5px; font-weight: bold; color: #004aad; }
-  .booking-form input, .booking-form select {
-    width: 100%; padding: 8px; margin-bottom: 15px; border-radius: 5px; border: 1px solid #ccc;
-  }
-  .booking-form button {
-    width: 100%; padding: 10px; background-color: #ffd700; border: none; border-radius: 5px; font-weight: bold; cursor: pointer;
-    transition: transform 0.3s, background-color 0.3s;
-  }
-  .booking-form button:hover { transform: scale(1.05); background-color: #e6c200; }
-  #booking-message { text-align: center; font-weight: bold; margin-top: 15px; color: green; }
-  @media (max-width: 768px) { .card-container { flex-wrap: wrap; } }
+.card-container{display:flex;justify-content:center;gap:30px;padding:40px 20px;overflow:hidden;position:relative;}
+.card{background-color:white;border-radius:15px;padding:20px;text-align:center;width:220px;box-shadow:0 5px 15px rgba(0,0,0,0.1);transition:transform 0.5s,opacity 0.5s;cursor:pointer;flex-shrink:0;opacity:0;}
+.card.active{opacity:1;}
+.card img{width:100%;height:150px;border-radius:10px;object-fit:cover;margin-bottom:15px;}
+.card h3{font-size:1.2rem;color:#004aad;margin-bottom:10px;}
+.card p{font-size:1rem;color:#333;}
+.card:hover{transform:translateY(-5px);box-shadow:0 8px 20px rgba(0,0,0,0.2);}
+.booking-form{max-width:500px;margin:40px auto;padding:30px;background-color:white;border-radius:15px;box-shadow:0 5px 15px rgba(0,0,0,0.1);}
+.booking-form h3{text-align:center;margin-bottom:20px;color:#004aad;}
+.booking-form label{display:block;margin-bottom:5px;font-weight:bold;color:#004aad;}
+.booking-form input,.booking-form select{width:100%;padding:8px;margin-bottom:15px;border-radius:5px;border:1px solid #ccc;}
+.booking-form button{width:100%;padding:10px;background-color:#ffd700;border:none;border-radius:5px;font-weight:bold;cursor:pointer;transition:transform 0.3s,background-color 0.3s;}
+.booking-form button:hover{transform:scale(1.05);background-color:#e6c200;}
+#booking-message{text-align:center;font-weight:bold;margin-top:15px;color:green;}
+@media(max-width:768px){.card-container{flex-wrap:wrap;}}
 </style>
 </head>
 <body>
@@ -78,10 +39,10 @@
     <a href="signin.html" id="signin-link">Sign In</a>
     <button id="logout-btn" style="display:none;">Log Out</button>
     <select id="language-selector">
-  <option value="en">English</option>
-  <option value="it">Italiano</option>
-  <option value="de">Deutsch</option>
-</select>
+      <option value="en">English</option>
+      <option value="it">Italiano</option>
+      <option value="de">Deutsch</option>
+    </select>
   </nav>
 </header>
 
@@ -91,127 +52,61 @@
 </section>
 
 <section class="booking-form">
-  <h3>Book Your Stay</h3>
-
-  <label for="hotel-select">Select Hotel:</label>
-  <select id="hotel-select">
-    <option value="">-- Choose a Hotel --</option>
-    <option value="Laid Hotel">Laid Hotel</option>
-    <option value="Regina City Hotel">Regina City Hotel</option>
-    <option value="Marina Bay Resort & Casino">Marina Bay Resort & Casino</option>
-    <option value="Flamingo Hotel">Flamingo Hotel</option>
-  </select>
-
-  <label for="name">Full Name:</label>
-  <input type="text" id="name" placeholder="Your Name" required>
-
-  <label for="email">Email:</label>
-  <input type="email" id="email" placeholder="you@example.com" required>
-
-  <label for="phone">Phone:</label>
-  <input type="text" id="phone" placeholder="Your Phone Number" required>
-
-  <label for="adults">Number of Adults:</label>
-  <input type="number" id="adults" placeholder="Number of Adults" min="1" required>
-
-  <label for="kids">Number of Kids:</label>
-  <input type="number" id="kids" placeholder="Number of Kids" min="0" required>
-
-  <label for="checkin">Check-In Date:</label>
-  <input type="date" id="checkin" required>
-
-  <label for="checkout">Check-Out Date:</label>
-  <input type="date" id="checkout" required>
-
-  <button id="book-btn">Book Now</button>
-  <div id="booking-message"></div>
+<h3>Book Your Stay</h3>
+<label for="hotel-select">Select Hotel:</label>
+<select id="hotel-select">
+<option value="">-- Choose a Hotel --</option>
+<option value="Laid Hotel">Laid Hotel</option>
+<option value="Regina City Hotel">Regina City Hotel</option>
+<option value="Marina Bay Resort & Casino">Marina Bay Resort & Casino</option>
+<option value="Flamingo Hotel">Flamingo Hotel</option>
+</select>
+<label for="name">Full Name:</label><input type="text" id="name" placeholder="Your Name" required>
+<label for="email">Email:</label><input type="email" id="email" placeholder="you@example.com" required>
+<label for="phone">Phone:</label><input type="text" id="phone" placeholder="Your Phone Number" required>
+<label for="adults">Number of Adults:</label><input type="number" id="adults" placeholder="Number of Adults" min="1" required>
+<label for="kids">Number of Kids:</label><input type="number" id="kids" placeholder="Number of Kids" min="0" required>
+<label for="checkin">Check-In Date:</label><input type="date" id="checkin" required>
+<label for="checkout">Check-Out Date:</label><input type="date" id="checkout" required>
+<button id="book-btn">Book Now</button>
+<div id="booking-message"></div>
 </section>
 
-<footer>
-  <p>© 2025 GLOSPOT</p>
-</footer>
+<footer><p>© 2025 GLOSPOT</p></footer>
 
 <script type="module" src="firebase-config.js"></script>
 <script type="module">
 import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-firestore.js";
 const db = getFirestore();
 
-// Booking
-const bookBtn = document.getElementById("book-btn");
-const hotelSelect = document.getElementById("hotel-select");
-const nameInput = document.getElementById("name");
-const emailInput = document.getElementById("email");
-const phoneInput = document.getElementById("phone");
-const adultsInput = document.getElementById("adults");
-const kidsInput = document.getElementById("kids");
-const checkinInput = document.getElementById("checkin");
-const checkoutInput = document.getElementById("checkout");
-const bookingMessage = document.getElementById("booking-message");
-
-bookBtn.addEventListener("click", async () => {
-  const hotel = hotelSelect.value;
-  const name = nameInput.value.trim();
-  const email = emailInput.value.trim();
-  const phone = phoneInput.value.trim();
-  const adults = adultsInput.value;
-  const kids = kidsInput.value;
-  const checkin = checkinInput.value;
-  const checkout = checkoutInput.value;
-
-  if (!hotel || !name || !email || !phone || !adults || !kids || !checkin || !checkout) {
-    bookingMessage.textContent = "Please fill all fields.";
-    bookingMessage.style.color = "red";
-    return;
-  }
-
-  try {
-    await addDoc(collection(db, "reservations"), { hotel, name, email, phone, adults, kids, checkin, checkout, timestamp: serverTimestamp() });
-    bookingMessage.textContent = "Reservation successful!";
-    bookingMessage.style.color = "green";
-    hotelSelect.value = ""; nameInput.value = ""; emailInput.value = ""; phoneInput.value = "";
-    adultsInput.value = ""; kidsInput.value = ""; checkinInput.value = ""; checkoutInput.value = "";
-  } catch (error) {
-    console.error(error);
-    bookingMessage.textContent = "Failed to make reservation.";
-    bookingMessage.style.color = "red";
-  }
+const bookBtn=document.getElementById("book-btn");
+bookBtn.addEventListener("click",async()=>{
+  const hotel=document.getElementById("hotel-select").value;
+  const name=document.getElementById("name").value.trim();
+  const email=document.getElementById("email").value.trim();
+  const phone=document.getElementById("phone").value.trim();
+  const adults=document.getElementById("adults").value;
+  const kids=document.getElementById("kids").value;
+  const checkin=document.getElementById("checkin").value;
+  const checkout=document.getElementById("checkout").value;
+  const msg=document.getElementById("booking-message");
+  if(!hotel||!name||!email||!phone||!adults||!kids||!checkin||!checkout){msg.textContent="Please fill all fields.";msg.style.color="red";return;}
+  try{await addDoc(collection(db,"reservations"),{hotel,name,email,phone,adults,kids,checkin,checkout,timestamp:serverTimestamp()});msg.textContent="Reservation successful!";msg.style.color="green";document.getElementById("hotel-select").value="";document.getElementById("name").value="";document.getElementById("email").value="";document.getElementById("phone").value="";document.getElementById("adults").value="";document.getElementById("kids").value="";document.getElementById("checkin").value="";document.getElementById("checkout").value="";}catch(e){console.error(e);msg.textContent="Failed to make reservation.";msg.style.color="red";}
 });
 
-// Slideshow
-const hotels = [
-  { name: "Laid Hotel", img: "images/laidhotel.webp", desc: "Luxury stays near the beach with amazing sea views." },
-  { name: "Regina City Hotel", img: "images/reginacity.jpg", desc: "The luxury you are looking to seek with multiple choices." },
-  { name: "Marina Bay Resort & Casino", img: "images/marinabay.webp", desc: "A Jewel on the Albanian Riviera." },
-  { name: "Flamingo Hotel", img: "images/flamingohotel.jpg", desc: "A modern hotel with exquisite rooms and pool." }
-];
+// Hotels Slideshow
+const hotels=[
+{name:"Laid Hotel",img:"images/laidhotel.webp",desc:"Luxury stays near the beach with amazing sea views."},
+{name:"Regina City Hotel",img:"images/reginacity.jpg",desc:"The luxury you are looking to seek with multiple choices."},
+{name:"Marina Bay Resort & Casino",img:"images/marinabay.webp",desc:"A Jewel on the Albanian Riviera."},
+{name:"Flamingo Hotel",img:"images/flamingohotel.jpg",desc:"A modern hotel with exquisite rooms and pool."}];
 
-const container = document.getElementById("hotel-slider");
-let index = 0;
-
-function renderHotels() {
-  container.innerHTML = "";
-  for (let i = 0; i < 3; i++) {
-    const h = hotels[(index + i) % hotels.length];
-    const card = document.createElement("div");
-    card.className = "card active";
-    card.innerHTML = `<img src="${h.img}" alt="${h.name}"><h3>${h.name}</h3><p>${h.desc}</p>`;
-    container.appendChild(card);
-    card.addEventListener("click", () => {
-      hotelSelect.value = h.name;
-      window.scrollTo({ top: document.querySelector(".booking-form").offsetTop - 20, behavior: "smooth" });
-    });
-  }
-}
-
-// Initial render
-renderHotels();
-
-// Cycle hotels
-setInterval(() => {
-  index = (index + 1) % hotels.length;
-  renderHotels();
-}, 5000);
+let index=0;
+const container=document.getElementById("hotel-slider");
+function renderHotels(){container.innerHTML="";for(let i=0;i<3;i++){const h=hotels[(index+i)%hotels.length];const card=document.createElement("div");card.className="card active";card.innerHTML=`<img src="${h.img}" alt="${h.name}"><h3>${h.name}</h3><p>${h.desc}</p>`;container.appendChild(card);card.addEventListener("click",()=>{document.getElementById("hotel-select").value=h.name;window.scrollTo({top:document.querySelector(".booking-form").offsetTop-20,behavior:"smooth"});});}}
+renderHotels();setInterval(()=>{index=(index+1)%hotels.length;renderHotels();},5000);
 </script>
 <script type="module" src="auth.js"></script>
+<script type="module" src="language.js"></script>
 </body>
 </html>
