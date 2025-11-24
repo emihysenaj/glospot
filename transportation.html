@@ -6,26 +6,148 @@
 <title>Transportation - GLOSPOT</title>
 <link rel="stylesheet" href="style.css">
 <style>
-.card-container{display:flex;justify-content:center;gap:30px;padding:40px 20px;overflow:hidden;position:relative;}
-.card{background-color:white;border-radius:15px;padding:20px;text-align:center;width:220px;box-shadow:0 5px 15px rgba(0,0,0,0.1);transition:transform 0.5s,opacity 0.5s;cursor:pointer;flex-shrink:0;opacity:0;}
-.card.active{opacity:1;}
-.card img{width:100px;height:100px;border-radius:50%;object-fit:cover;margin:0 auto 15px auto;display:block;}
-.card h3{font-size:1.2rem;color:#004aad;margin-bottom:10px;}
-.card p{font-size:1rem;color:#333;}
-.card:hover{transform:translateY(-5px);box-shadow:0 8px 20px rgba(0,0,0,0.2);}
-section#hero-transport{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:60px 20px;background-color:#004aad;color:white;}
-section#hero-transport h2{font-size:2.5rem;margin-bottom:10px;}
-section#hero-transport p{font-size:1.2rem;max-width:700px;margin-bottom:20px;}
-section#hero-transport .buttons button{margin:10px;padding:10px 20px;font-weight:bold;border-radius:5px;border:none;cursor:pointer;background-color:#ffd700;color:black;transition:transform 0.3s,background-color 0.3s;}
-section#hero-transport .buttons button:hover{transform:scale(1.1);background-color:#e6c200;}
-.booking-form{max-width:500px;margin:40px auto;padding:30px;background-color:white;border-radius:15px;box-shadow:0 5px 15px rgba(0,0,0,0.1);}
-.booking-form h3{text-align:center;margin-bottom:20px;color:#004aad;}
-.booking-form label{display:block;margin-bottom:5px;font-weight:bold;color:#004aad;}
-.booking-form input,.booking-form select{width:100%;padding:8px;margin-bottom:15px;border-radius:5px;border:1px solid #ccc;}
-.booking-form button{width:100%;padding:10px;background-color:#ffd700;border:none;border-radius:5px;font-weight:bold;cursor:pointer;transition:transform 0.3s,background-color 0.3s;}
-.booking-form button:hover{transform:scale(1.05);background-color:#e6c200;}
-#booking-message{text-align:center;font-weight:bold;margin-top:15px;color:green;}
-@media(max-width:768px){.card-container{flex-wrap:wrap;}}
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+  padding: 40px 20px;
+}
+
+.card {
+  background-color: white;
+  border-radius: 15px;
+  padding: 20px;
+  text-align: center;
+  width: 220px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+  cursor: pointer;
+}
+
+.card img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 0 auto 15px auto;
+  display: block;
+}
+
+.card h3 {
+  font-size: 1.2rem;
+  color: #004aad;
+  margin-bottom: 10px;
+}
+
+.card p {
+  font-size: 1rem;
+  color: #333;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+
+section#hero-transport {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 60px 20px;
+  background-color: #004aad;
+  color: white;
+}
+
+section#hero-transport h2 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+}
+
+section#hero-transport p {
+  font-size: 1.2rem;
+  max-width: 700px;
+  margin-bottom: 20px;
+}
+
+section#hero-transport .buttons button {
+  margin: 10px;
+  padding: 10px 20px;
+  font-weight: bold;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  background-color: #ffd700;
+  color: black;
+  transition: transform 0.3s, background-color 0.3s;
+}
+
+section#hero-transport .buttons button:hover {
+  transform: scale(1.1);
+  background-color: #e6c200;
+}
+
+.booking-form {
+  max-width: 500px;
+  margin: 40px auto;
+  padding: 30px;
+  background-color: white;
+  border-radius: 15px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.booking-form h3 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #004aad;
+}
+
+.booking-form label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #004aad;
+}
+
+.booking-form input,
+.booking-form select {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.booking-form button {
+  width: 100%;
+  padding: 10px;
+  background-color: #ffd700;
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.3s, background-color 0.3s;
+}
+
+.booking-form button:hover {
+  transform: scale(1.05);
+  background-color: #e6c200;
+}
+
+#booking-message {
+  text-align: center;
+  font-weight: bold;
+  margin-top: 15px;
+  color: green;
+}
+
+@media(max-width:768px){
+  .card-container {
+    flex-wrap: wrap;
+  }
+}
 </style>
 </head>
 <body>
@@ -57,7 +179,23 @@ section#hero-transport .buttons button:hover{transform:scale(1.1);background-col
 
 <section id="transport-options">
 <h2>Transportation Options</h2>
-<div class="card-container" id="transport-slider"></div>
+<div class="card-container" id="transport-cards">
+  <div class="card">
+    <img src="images/bus.jpeg" alt="Bus Services">
+    <h3>Bus Services</h3>
+    <p>Comfortable intercity buses for all your travel needs.</p>
+  </div>
+  <div class="card">
+    <img src="images/car.jpg" alt="Private Cars">
+    <h3>Private Cars</h3>
+    <p>Rent private cars for personal or group trips.</p>
+  </div>
+  <div class="card">
+    <img src="images/taxi.webp" alt="Taxi">
+    <h3>Taxi</h3>
+    <p>Reliable taxi services for city travel.</p>
+  </div>
+</div>
 </section>
 
 <section class="booking-form">
@@ -86,32 +224,52 @@ section#hero-transport .buttons button:hover{transform:scale(1.1);background-col
 import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-firestore.js";
 const db = getFirestore();
 
-// Booking
+// Booking functionality
 const bookBtn = document.getElementById("book-btn");
 bookBtn.addEventListener("click", async () => {
-  const transport=document.getElementById("transport-select").value;
-  const name=document.getElementById("name").value.trim();
-  const email=document.getElementById("email").value.trim();
-  const phone=document.getElementById("phone").value.trim();
-  const adults=document.getElementById("adults").value;
-  const kids=document.getElementById("kids").value;
-  const date=document.getElementById("date").value;
-  const msg=document.getElementById("booking-message");
-  if(!transport||!name||!email||!phone||!adults||!kids||!date){msg.textContent="Please fill all fields.";msg.style.color="red";return;}
-  try{await addDoc(collection(db,"transport_bookings"),{transport,name,email,phone,adults,kids,date,timestamp:serverTimestamp()});msg.textContent="Booking successful!";msg.style.color="green";document.getElementById("transport-select").value="";document.getElementById("name").value="";document.getElementById("email").value="";document.getElementById("phone").value="";document.getElementById("adults").value="";document.getElementById("kids").value="";document.getElementById("date").value="";}catch(e){console.error(e);msg.textContent="Failed to make booking.";msg.style.color="red";}
+  const transport = document.getElementById("transport-select").value;
+  const name = document.getElementById("name").value.trim();
+  const email = document.getElementById("email").value.trim();
+  const phone = document.getElementById("phone").value.trim();
+  const adults = document.getElementById("adults").value;
+  const kids = document.getElementById("kids").value;
+  const date = document.getElementById("date").value;
+  const msg = document.getElementById("booking-message");
+
+  if (!transport || !name || !email || !phone || !adults || !kids || !date) {
+    msg.textContent = "Please fill all fields.";
+    msg.style.color = "red";
+    return;
+  }
+
+  try {
+    await addDoc(collection(db, "transport_bookings"), {
+      transport, name, email, phone, adults, kids, date, timestamp: serverTimestamp()
+    });
+    msg.textContent = "Booking successful!";
+    msg.style.color = "green";
+    document.getElementById("transport-select").value = "";
+    document.getElementById("name").value = "";
+    document.getElementById("email").value = "";
+    document.getElementById("phone").value = "";
+    document.getElementById("adults").value = "";
+    document.getElementById("kids").value = "";
+    document.getElementById("date").value = "";
+  } catch (e) {
+    console.error(e);
+    msg.textContent = "Failed to make booking.";
+    msg.style.color = "red";
+  }
 });
 
-// Slideshow
-const transports=[
-{name:"Bus Services",img:"images/bus.jpeg",desc:"Comfortable intercity buses for all your travel needs."},
-{name:"Private Cars",img:"images/car.jpg",desc:"Rent private cars for personal or group trips."},
-{name:"Taxi",img:"images/taxi.webp",desc:"Reliable taxi services for city travel."}];
-
-let index=0;
-const container=document.getElementById("transport-slider");
-function renderTransports(){container.innerHTML="";for(let i=0;i<transports.length;i++){const t=transports[(index+i)%transports.length];const card=document.createElement("div");card.className="card active";card.innerHTML=`<img src="${t.img}" alt="${t.name}"><h3>${t.name}</h3><p>${t.desc}</p>`;container.appendChild(card);card.addEventListener("click",()=>{document.getElementById("transport-select").value=t.name;window.scrollTo({top:document.querySelector(".booking-form").offsetTop-20,behavior:"smooth"});});}}
-renderTransports();
-setInterval(()=>{index=(index+1)%transports.length;renderTransports();},5000);
+// Clicking cards selects transportation
+document.querySelectorAll('.card').forEach(card => {
+  card.addEventListener('click', () => {
+    const name = card.querySelector('h3').textContent;
+    document.getElementById('transport-select').value = name;
+    window.scrollTo({ top: document.querySelector('.booking-form').offsetTop - 20, behavior: 'smooth' });
+  });
+});
 </script>
 <script type="module" src="auth.js"></script>
 
