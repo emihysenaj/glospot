@@ -6,109 +6,22 @@
 <title>Hotels - GLOSPOT</title>
 <link rel="stylesheet" href="style.css">
 <style>
-.card-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 30px;
-  padding: 40px 20px;
-}
+.card-container { display:flex; flex-wrap:wrap; justify-content:center; gap:30px; padding:40px 20px; }
+.card { background-color:white; border-radius:15px; padding:20px; text-align:center; width:220px; box-shadow:0 5px 15px rgba(0,0,0,0.1); cursor:pointer; transition: transform 0.3s, box-shadow 0.3s; }
+.card img { width:100px; height:100px; border-radius:50%; object-fit:cover; margin:0 auto 15px; display:block; }
+.card h3 { font-size:1.2rem; color:#004aad; margin-bottom:10px; }
+.card p { font-size:1rem; color:#333; }
+.card:hover { transform:translateY(-5px); box-shadow:0 8px 20px rgba(0,0,0,0.2); }
 
-.card {
-  background-color: white;
-  border-radius: 15px;
-  padding: 20px;
-  text-align: center;
-  width: 220px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-  transition: transform 0.3s, box-shadow 0.3s;
-  cursor: pointer;
-}
+.booking-form { max-width:500px; margin:40px auto; padding:30px; background-color:white; border-radius:15px; box-shadow:0 5px 15px rgba(0,0,0,0.1); }
+.booking-form h3 { text-align:center; margin-bottom:20px; color:#004aad; }
+.booking-form label { display:block; margin-bottom:5px; font-weight:bold; color:#004aad; }
+.booking-form input, .booking-form select { width:100%; padding:8px; margin-bottom:15px; border-radius:5px; border:1px solid #ccc; }
+.booking-form button { width:100%; padding:10px; background-color:#ffd700; border:none; border-radius:5px; font-weight:bold; cursor:pointer; transition: transform 0.3s, background-color 0.3s; }
+.booking-form button:hover { transform:scale(1.05); background-color:#e6c200; }
+#booking-message { text-align:center; font-weight:bold; margin-top:15px; color:green; }
 
-.card img {
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  object-fit: cover;
-  margin: 0 auto 15px auto;
-  display: block;
-}
-
-.card h3 {
-  font-size: 1.2rem;
-  color: #004aad;
-  margin-bottom: 10px;
-}
-
-.card p {
-  font-size: 1rem;
-  color: #333;
-}
-
-.card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-}
-
-.booking-form {
-  max-width: 500px;
-  margin: 40px auto;
-  padding: 30px;
-  background-color: white;
-  border-radius: 15px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-}
-
-.booking-form h3 {
-  text-align: center;
-  margin-bottom: 20px;
-  color: #004aad;
-}
-
-.booking-form label {
-  display: block;
-  margin-bottom: 5px;
-  font-weight: bold;
-  color: #004aad;
-}
-
-.booking-form input,
-.booking-form select {
-  width: 100%;
-  padding: 8px;
-  margin-bottom: 15px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-}
-
-.booking-form button {
-  width: 100%;
-  padding: 10px;
-  background-color: #ffd700;
-  border: none;
-  border-radius: 5px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: transform 0.3s, background-color 0.3s;
-}
-
-.booking-form button:hover {
-  transform: scale(1.05);
-  background-color: #e6c200;
-}
-
-#booking-message {
-  text-align: center;
-  font-weight: bold;
-  margin-top: 15px;
-  color: green;
-}
-
-@media(max-width:768px){
-  .card-container {
-    flex-wrap: wrap;
-  }
-}
+@media(max-width:768px){ .card-container { flex-wrap:wrap; } }
 </style>
 </head>
 <body>
@@ -132,26 +45,10 @@
 <section id="hotels">
   <h2>Our Recommended Hotels</h2>
   <div class="card-container" id="hotel-cards">
-    <div class="card">
-      <img src="images/laidhotel.webp" alt="Laid Hotel">
-      <h3>Laid Hotel</h3>
-      <p>Luxury stays near the beach with amazing sea views.</p>
-    </div>
-    <div class="card">
-      <img src="images/reginacity.jpg" alt="Regina City Hotel">
-      <h3>Regina City Hotel</h3>
-      <p>The luxury you are looking to seek with multiple choices.</p>
-    </div>
-    <div class="card">
-      <img src="images/marinabay.webp" alt="Marina Bay Resort & Casino">
-      <h3>Marina Bay Resort & Casino</h3>
-      <p>A Jewel on the Albanian Riviera.</p>
-    </div>
-    <div class="card">
-      <img src="images/flamingohotel.jpg" alt="Flamingo Hotel">
-      <h3>Flamingo Hotel</h3>
-      <p>A modern hotel with exquisite rooms and pool.</p>
-    </div>
+    <div class="card"><img src="images/laidhotel.webp" alt="Laid Hotel"><h3>Laid Hotel</h3><p>Luxury stays near the beach with amazing sea views.</p></div>
+    <div class="card"><img src="images/reginacity.jpg" alt="Regina City Hotel"><h3>Regina City Hotel</h3><p>The luxury you are looking to seek with multiple choices.</p></div>
+    <div class="card"><img src="images/marinabay.webp" alt="Marina Bay Resort & Casino"><h3>Marina Bay Resort & Casino</h3><p>A Jewel on the Albanian Riviera.</p></div>
+    <div class="card"><img src="images/flamingohotel.jpg" alt="Flamingo Hotel"><h3>Flamingo Hotel</h3><p>A modern hotel with exquisite rooms and pool.</p></div>
   </div>
 </section>
 
@@ -180,10 +77,9 @@
 
 <script type="module" src="firebase-config.js"></script>
 <script type="module">
-import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-firestore.js";
-const db = getFirestore();
+import { db } from './firebase-config.js';
+import { collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-firestore.js";
 
-// Booking functionality
 const bookBtn = document.getElementById("book-btn");
 bookBtn.addEventListener("click", async () => {
   const hotel = document.getElementById("hotel-select").value;
@@ -203,9 +99,7 @@ bookBtn.addEventListener("click", async () => {
   }
 
   try {
-    await addDoc(collection(db, "reservations"), {
-      hotel, name, email, phone, adults, kids, checkin, checkout, timestamp: serverTimestamp()
-    });
+    await addDoc(collection(db, "reservations"), { hotel, name, email, phone, adults, kids, checkin, checkout, timestamp: serverTimestamp() });
     msg.textContent = "Reservation successful!";
     msg.style.color = "green";
     document.getElementById("hotel-select").value = "";
@@ -223,7 +117,6 @@ bookBtn.addEventListener("click", async () => {
   }
 });
 
-// Clicking cards selects hotel
 document.querySelectorAll('.card').forEach(card => {
   card.addEventListener('click', () => {
     const name = card.querySelector('h3').textContent;
@@ -233,6 +126,5 @@ document.querySelectorAll('.card').forEach(card => {
 });
 </script>
 <script type="module" src="auth.js"></script>
-
 </body>
 </html>
