@@ -1,31 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sign In - GLOSPOT</title>
-<link rel="stylesheet" href="style.css">
-<style>
-.form-section{max-width:400px;margin:40px auto;padding:30px;background-color:white;border-radius:15px;box-shadow:0 5px 15px rgba(0,0,0,0.1);}
-.form-section h2{text-align:center;color:#004aad;margin-bottom:20px;}
-.form-section label{display:block;margin-bottom:5px;font-weight:bold;color:#004aad;}
-.form-section input{width:100%;padding:8px;margin-bottom:15px;border-radius:5px;border:1px solid #ccc;}
-.form-section button{width:100%;padding:10px;background-color:#ffd700;border:none;border-radius:5px;font-weight:bold;cursor:pointer;transition:transform 0.3s, background-color 0.3s;}
-.form-section button:hover{transform:scale(1.05);background-color:#e6c200;}
-#auth-message{text-align:center;font-weight:bold;margin-bottom:15px;color:red;}
-.form-section p{text-align:center;}
-.form-section a{color:#004aad;font-weight:bold;text-decoration:none;}
-.form-section a:hover{text-decoration:underline;}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign In - GLOSPOT</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<div id="auth-message"></div>
-
 <header>
-  <div class="logo-container">
+  <a href="index.html" class="logo-container">
     <img src="images/glospot-logo.png" alt="GLOSPOT Logo" class="logo">
     <h1>GLOSPOT</h1>
+  </a>
+  <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
   </div>
   <nav id="main-nav">
     <a href="index.html">Home</a>
@@ -38,23 +27,40 @@
   </nav>
 </header>
 
-<section class="form-section">
-  <h2>Sign In</h2>
-  <form id="signin-form">
-    <label for="si-email">Email:</label>
-    <input type="email" id="si-email" placeholder="you@example.com" required>
+<div id="auth-message"></div>
 
-    <label for="si-password">Password:</label>
-    <input type="password" id="si-password" placeholder="Enter Password" required>
+<div class="auth-page">
+  <section class="form-section">
+    <h2>Welcome Back</h2>
+    <p class="form-tagline">Sign in to your GLOSPOT account</p>
+    <form id="signin-form">
+      <label for="si-email">Email</label>
+      <input type="email" id="si-email" placeholder="you@example.com" required>
 
-    <button type="submit">Sign In</button>
-  </form>
-  <p>Forgot password? <a href="forgot-password.html">Reset Here</a></p>
-  <p>Don't have an account? <a href="signup.html">Sign Up</a></p>
-</section>
+      <label for="si-password">Password</label>
+      <input type="password" id="si-password" placeholder="Enter your password" required>
 
-<footer><p>© 2025 GLOSPOT</p></footer>
+      <button type="submit">Sign In</button>
+    </form>
+    <div class="form-links">
+      <p><a href="forgot-password.html">Forgot your password?</a></p>
+      <p>Don't have an account? <a href="signup.html">Sign Up</a></p>
+    </div>
+  </section>
+</div>
 
+<footer>
+  <div class="footer-bottom" style="border-top:none;">
+    <p>&copy; 2025 GLOSPOT. All rights reserved.</p>
+  </div>
+</footer>
+
+<script>
+function toggleMenu() {
+  document.getElementById('main-nav').classList.toggle('open');
+  document.getElementById('hamburger').classList.toggle('open');
+}
+</script>
 <script type="module" src="firebase-config.js"></script>
 <script type="module" src="auth.js"></script>
 </body>
