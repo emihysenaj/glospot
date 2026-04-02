@@ -1,27 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>GLOSPOT - Home</title>
-<link rel="stylesheet" href="style.css">
-<style>
-.hero-image-container { position: relative; width: 100%; max-width: 800px; margin: 0 auto; min-height: 400px; }
-.hero-image { width: 100%; height: auto; border-radius: 10px; object-fit: cover; position: absolute; top: 0; left: 0; opacity: 0; transition: opacity 1s ease-in-out; }
-.hero-image.active { opacity: 1; position: relative; }
-.hero-content { max-width: 600px; color: #004aad; text-align: center; margin: 20px auto 0 auto; }
-.hero-content .buttons button { margin: 0 10px; padding: 10px 20px; font-weight: bold; border-radius:5px; border:none; cursor:pointer; transition: transform 0.3s, background-color 0.3s; background-color: #ffd700; color:black; }
-.hero-content .buttons button:hover { transform: scale(1.1); background-color: #e6c200; }
-#contact-us { text-align:center; padding:40px 20px; background-color:#f2f2f2; }
-#contact-us h2 { color:#004aad; font-weight:bold; font-size:2rem; margin-bottom:20px; }
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GLOSPOT - Home</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <header>
-  <div class="logo-container">
+  <a href="index.html" class="logo-container">
     <img src="images/glospot-logo.png" alt="GLOSPOT Logo" class="logo">
     <h1>GLOSPOT</h1>
+  </a>
+  <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
   </div>
   <nav id="main-nav">
     <a href="index.html" class="active">Home</a>
@@ -34,53 +27,164 @@
   </nav>
 </header>
 
+<!-- Hero -->
 <section id="home" class="hero">
-  <div class="hero-image-container"></div>
+  <div class="hero-image-container" id="hero-container">
+    <div class="hero-dots" id="hero-dots"></div>
+  </div>
   <div class="hero-content">
-    <h2>Welcome to Your Next Adventure!</h2>
-    <p>We organize amazing trips all over the world — beach holidays, mountain hikes, and city tours.</p>
+    <h2>Your Next Adventure Starts Here</h2>
+    <p>We organize unforgettable trips across the globe — beach getaways, mountain treks, and vibrant city tours. Let us take you there.</p>
     <div class="buttons">
-      <button onclick="location.href='signup.html'">Sign Up</button>
-      <button onclick="location.href='signin.html'">Sign In</button>
+      <button onclick="location.href='signup.html'">Get Started</button>
+      <button class="btn-outline" onclick="location.href='hotels.html'">Explore Hotels</button>
     </div>
   </div>
 </section>
 
+<!-- Packages -->
+<section id="packages">
+  <h2>Popular Packages</h2>
+  <p class="section-subtitle">Hand-picked destinations for every kind of traveler</p>
+  <div class="packages-grid">
+    <div class="package-card">
+      <div class="pkg-icon">🏖️</div>
+      <h3>Greece</h3>
+      <p class="pkg-duration">5 days / 4 nights</p>
+      <div class="pkg-price">€699 <span>/ person</span></div>
+    </div>
+    <div class="package-card">
+      <div class="pkg-icon">🏔️</div>
+      <h3>Turkey</h3>
+      <p class="pkg-duration">7 days / 6 nights</p>
+      <div class="pkg-price">€849 <span>/ person</span></div>
+    </div>
+    <div class="package-card">
+      <div class="pkg-icon">🗼</div>
+      <h3>Paris</h3>
+      <p class="pkg-duration">3 days / 2 nights</p>
+      <div class="pkg-price">€549 <span>/ person</span></div>
+    </div>
+    <div class="package-card">
+      <div class="pkg-icon">🌊</div>
+      <h3>Albania Riviera</h3>
+      <p class="pkg-duration">4 days / 3 nights</p>
+      <div class="pkg-price">€399 <span>/ person</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- Contact -->
 <section id="contact-us">
   <h2>Contact Us</h2>
-  <p>Email: glospoot@gmail.com</p>
-  <p>Phone: 355-69-123-4567</p>
+  <p class="contact-subtitle">We're here to help you plan your perfect trip</p>
+  <div class="contact-info">
+    <div class="contact-item">
+      <div class="contact-icon">✉️</div>
+      <p><a href="mailto:glospoot@gmail.com">glospoot@gmail.com</a></p>
+    </div>
+    <div class="contact-item">
+      <div class="contact-icon">📞</div>
+      <p>+355 69 123 4567</p>
+    </div>
+    <div class="contact-item">
+      <div class="contact-icon">📍</div>
+      <p>Tirana, Albania</p>
+    </div>
+  </div>
 </section>
 
 <footer>
-  <p>© 2025 GLOSPOT</p>
+  <div class="footer-grid">
+    <div class="footer-col">
+      <h4>GLOSPOT</h4>
+      <p>Your trusted travel partner for unforgettable experiences around the world.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <a href="index.html">Home</a>
+      <a href="hotels.html">Hotels</a>
+      <a href="guides.html">Guides</a>
+      <a href="transportation.html">Transportation</a>
+    </div>
+    <div class="footer-col">
+      <h4>Account</h4>
+      <a href="signup.html">Sign Up</a>
+      <a href="signin.html">Sign In</a>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <p>glospoot@gmail.com</p>
+      <p>+355 69 123 4567</p>
+      <p>Tirana, Albania</p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2025 GLOSPOT. All rights reserved.</p>
+  </div>
 </footer>
 
 <script type="module" src="firebase-config.js"></script>
 <script type="module" src="auth.js"></script>
-
 <script>
+// Hamburger menu
+function toggleMenu() {
+  document.getElementById('main-nav').classList.toggle('open');
+  document.getElementById('hamburger').classList.toggle('open');
+}
+
+// Close menu when a link is clicked
+document.querySelectorAll('#main-nav a').forEach(link => {
+  link.addEventListener('click', () => {
+    document.getElementById('main-nav').classList.remove('open');
+    document.getElementById('hamburger').classList.remove('open');
+  });
+});
+
+// Hero slideshow
 const heroImages = [
   'images/beach.jpg','images/beach2.jpg','images/beach3.jpg',
   'images/beach4.jpg','images/beach5.jpg','images/beach6.jpg',
   'images/beach7.jpg','images/beach8.jpg'
 ];
-const heroContainer = document.querySelector('.hero-image-container');
-heroImages.forEach((src,index)=>{
-  const img=document.createElement('img'); 
-  img.src=src; 
-  img.classList.add('hero-image'); 
-  if(index===0) img.classList.add('active'); 
-  heroContainer.appendChild(img);
+const heroContainer = document.getElementById('hero-container');
+const dotsContainer = document.getElementById('hero-dots');
+let currentIndex = 0;
+let slideInterval;
+
+heroImages.forEach((src, index) => {
+  const img = document.createElement('img');
+  img.src = src;
+  img.classList.add('hero-image');
+  if (index === 0) img.classList.add('active');
+  heroContainer.insertBefore(img, dotsContainer);
+
+  const dot = document.createElement('button');
+  dot.classList.add('hero-dot');
+  if (index === 0) dot.classList.add('active');
+  dot.addEventListener('click', () => goToSlide(index));
+  dotsContainer.appendChild(dot);
 });
-let currentIndex=0;
-const totalImages=heroImages.length;
-setInterval(()=>{
-  const images=document.querySelectorAll('.hero-image'); 
-  images[currentIndex].classList.remove('active'); 
-  currentIndex=(currentIndex+1)%totalImages; 
-  images[currentIndex].classList.add('active');
-},5000);
+
+function goToSlide(index) {
+  document.querySelectorAll('.hero-image')[currentIndex].classList.remove('active');
+  document.querySelectorAll('.hero-dot')[currentIndex].classList.remove('active');
+  currentIndex = index;
+  document.querySelectorAll('.hero-image')[currentIndex].classList.add('active');
+  document.querySelectorAll('.hero-dot')[currentIndex].classList.add('active');
+  resetInterval();
+}
+
+function nextSlide() {
+  goToSlide((currentIndex + 1) % heroImages.length);
+}
+
+function resetInterval() {
+  clearInterval(slideInterval);
+  slideInterval = setInterval(nextSlide, 5000);
+}
+
+resetInterval();
 </script>
 </body>
 </html>
